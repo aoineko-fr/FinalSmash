@@ -1,12 +1,12 @@
-// _____________________________________________________________________________
-//    ▄▄   ▄ ▄  ▄▄▄ ▄▄ ▄ ▄
-//   ██ ▀ ██▀█ ▀█▄  ▀█▄▀ ▄  ▄█▄█ ▄▀██
-//   ▀█▄▀ ██ █ ▄▄█▀ ██ █ ██ ██ █  ▀██
-// _______________________________▀▀____________________________________________
-// Data generated using CMSXimg 1.12.0 on Thu Aug 19 21:16:36 2021
-// by Guillaume "Aoineko" Blanchard (2021) under CC BY-SA free license
+// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄           
+// ██  ▀  █▄  ▀██▄ ▀ ▄█ ▄  ▄█▄█ ▄▀██
+// █  █ █  ▀▀  ▄█  █  █ ██ ██ █  ▀██
+// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀ 
+// ─────────────────────────────────────────────────────────────────────────────
+// Data generated using MSXimg 2.0.0 on Sat Nov  5 21:48:44 2022
+// by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
 // Generation parameters:
-//  - Input file:     players.png
+//  - Input file:     datasrc\players.png
 //  - Mode:           Sprite
 //  - Start position: 176, 88
 //  - Sprite size:    16, 40 (gap: 0, 0)

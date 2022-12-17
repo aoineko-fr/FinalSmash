@@ -1,11 +1,10 @@
-// _____________________________________________________________________________
-//    ▄▄   ▄ ▄  ▄▄▄ ▄▄ ▄ ▄▄   ▄
-//   ██ ▀ ██▀█ ▀█▄  ▀█▄▀ ██▄  ▄  ██▀▄
-//   ▀█▄▀ ██ █ ▄▄█▀ ██ █ ██▄▀ ██ ██ █
-// _____________________________________________________________________________
-// CMSXbin 1.2.0 by Guillaume "Aoineko" Blanchard (2021) under CC BY-SA free license
-// File generated on Thu Aug 19 21:16:36 2021
-// Soure file: intro.pt3
+// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄▄   ▄      
+// ██  ▀  █▄  ▀██▄ ▀ ▄█ ██▄  ▄  ██▀▄
+// █  █ █  ▀▀  ▄█  █  █ ██▄▀ ██ ██ █
+// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀             
+// MSXbin 1.3.1 by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
+// File generated on Sat Nov  5 21:48:44 2022
+// Soure file: datasrc\intro.pt3
 // Skip areas: from=0 size=100
 // Version:    ProTracker 3.7
 // Module:      /3AKOC NOD NIK-O___fixed by AC/
@@ -113,6 +112,5 @@ __at(0x392A) const unsigned char g_DataMusic[] = {
 	0x00, 0x06, 0xFB, 0x00, 0x03, 0x00, 0xFB, 0x03, 0x00, 0x06, 0xFB, 0xFE, 0x03, 0xFB, 0xFE, 0x03, //   1568
 	0x00, 0x06, 0x02, 0x05, 0x09, 0x05, 0x02, 0x09, 0x00, 0x06, 0x00, 0x05, 0x09, 0x00, 0x09, 0x05, //   1584
 	0x00, 0x06, 0x00, 0x03, 0x07, 0x00, 0x07, 0x03, //   1600
-	
 };
 // Total bytes: 1608
