@@ -1,10 +1,10 @@
-// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄           
+// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄
 // ██  ▀  █▄  ▀██▄ ▀ ▄█ ▄  ▄█▄█ ▄▀██
 // █  █ █  ▀▀  ▄█  █  █ ██ ██ █  ▀██
-// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀ 
-// ─────────────────────────────────────────────────────────────────────────────
-// Data generated using MSXimg 2.0.0 on Sat Nov  5 21:48:44 2022
+// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀
+// Data generated using MSXimg 1.16.1 on Sun Jan 22 19:35:03 2023
 // by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
+// ─────────────────────────────────────────────────────────────────────────────
 // Generation parameters:
 //  - Input file:     datasrc\score.png
 //  - Mode:           Graphic Mode 2
@@ -17,7 +17,7 @@
 //  - Offset:         160
 
 // Names Table
-const unsigned char g_DataScore_Names[] =
+const unsigned char g_DataScoreL0_Names[] =
 {
 	0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA1, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA2, 0xA3, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 
 	0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xA7, 0xA6, 0xAC, 0xAD, 0xAE, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 
@@ -85,31 +85,29 @@ const unsigned char g_DataScore_Patterns[] =
 // Chunk[0]
 	0x09, // Type=0, Length=9
 // Chunk[1]
-	0x42, // Type=1, Length=2
+	0xC7, // Type=3, Length=7
 	0x7F, /* .####### */ 
+	0x80, /* #....... */ 
+	0x81, /* #......# */ 
+	0x83, /* #.....## */ 
+	0x87, /* #....### */ 
+	0x8F, /* #...#### */ 
+	0x9F, /* #..##### */ 
 // Chunk[2]
-	0xC5, // Type=3, Length=5
-	0x7E, /* .######. */ 
-	0x7C, /* .#####.. */ 
-	0x78, /* .####... */ 
-	0x70, /* .###.... */ 
-	0x60, /* .##..... */ 
-// Chunk[3]
 	0x09, // Type=0, Length=9
-// Chunk[4]
-	0x42, // Type=1, Length=2
+// Chunk[3]
+	0xC7, // Type=3, Length=7
+	0xFE, /* #######. */ 
 	0x01, /* .......# */ 
-// Chunk[5]
-	0xC5, // Type=3, Length=5
-	0x7E, /* .######. */ 
-	0x3E, /* ..#####. */ 
-	0x1E, /* ...####. */ 
-	0x0E, /* ....###. */ 
-	0x06, /* .....##. */ 
-// Chunk[6]
+	0x81, /* #......# */ 
+	0xC1, /* ##.....# */ 
+	0xE1, /* ###....# */ 
+	0xF1, /* ####...# */ 
+	0xF9, /* #####..# */ 
+// Chunk[4]
 	0x48, // Type=1, Length=8
-	0x40, /* .#...... */ 
-// Chunk[7]
+	0xBF, /* #.###### */ 
+// Chunk[5]
 	0xC8, // Type=3, Length=8
 	0x0E, /* ....###. */ 
 	0x15, /* ...#.#.# */ 
@@ -118,10 +116,10 @@ const unsigned char g_DataScore_Patterns[] =
 	0x2A, /* ..#.#.#. */ 
 	0x3C, /* ..####.. */ 
 	0x40, /* .#...... */ 
-	0x7F, /* .####### */ 
-// Chunk[8]
+	0x80, /* #....... */ 
+// Chunk[6]
 	0x08, // Type=0, Length=8
-// Chunk[9]
+// Chunk[7]
 	0xCA, // Type=3, Length=10
 	0x3C, /* ..####.. */ 
 	0x62, /* .##...#. */ 
@@ -129,255 +127,256 @@ const unsigned char g_DataScore_Patterns[] =
 	0x38, /* ..###... */ 
 	0x0C, /* ....##.. */ 
 	0x06, /* .....##. */ 
-	0x79, /* .####..# */ 
+	0x86, /* #....##. */ 
 	0x7C, /* .#####.. */ 
 	0x38, /* ..###... */ 
 	0x64, /* .##..#.. */ 
-// Chunk[10]
+// Chunk[8]
 	0x43, // Type=1, Length=3
-	0x3F, /* ..###### */ 
-// Chunk[11]
+	0xC0, /* ##...... */ 
+// Chunk[9]
 	0xC6, // Type=3, Length=6
-	0x3D, /* ..####.# */ 
+	0xC2, /* ##....#. */ 
 	0x64, /* .##..#.. */ 
-	0x47, /* .#...### */ 
+	0xB8, /* #.###... */ 
 	0x38, /* ..###... */ 
 	0x4C, /* .#..##.. */ 
 	0x66, /* .##..##. */ 
-// Chunk[12]
+// Chunk[10]
 	0x43, // Type=1, Length=3
-	0x79, /* .####..# */ 
-// Chunk[13]
+	0x86, /* #....##. */ 
+// Chunk[11]
 	0xC4, // Type=3, Length=4
 	0x4C, /* .#..##.. */ 
 	0x38, /* ..###... */ 
 	0x7C, /* .#####.. */ 
-	0x4D, /* .#..##.# */ 
-// Chunk[14]
+	0xB2, /* #.##..#. */ 
+// Chunk[12]
 	0x42, // Type=1, Length=2
 	0x32, /* ..##..#. */ 
-// Chunk[15]
+// Chunk[13]
 	0xC1, // Type=3, Length=1
 	0x3C, /* ..####.. */ 
-// Chunk[16]
+// Chunk[14]
 	0x42, // Type=1, Length=2
 	0x34, /* ..##.#.. */ 
-// Chunk[17]
+// Chunk[15]
 	0xC3, // Type=3, Length=3
 	0x62, /* .##...#. */ 
 	0x38, /* ..###... */ 
 	0x64, /* .##..#.. */ 
-// Chunk[18]
+// Chunk[16]
 	0x42, // Type=1, Length=2
-	0x3F, /* ..###### */ 
-// Chunk[19]
+	0xC0, /* ##...... */ 
+// Chunk[17]
 	0xCC, // Type=3, Length=12
 	0x70, /* .###.... */ 
-	0x3D, /* ..####.# */ 
-	0x3B, /* ..###.## */ 
+	0xC2, /* ##....#. */ 
+	0xC4, /* ##...#.. */ 
 	0x78, /* .####... */ 
 	0x70, /* .###.... */ 
-	0x57, /* .#.#.### */ 
-	0x2B, /* ..#.#.## */ 
-	0x53, /* .#.#..## */ 
+	0xA8, /* #.#.#... */ 
+	0xD4, /* ##.#.#.. */ 
+	0xAC, /* #.#.##.. */ 
 	0x54, /* .#.#.#.. */ 
 	0x3C, /* ..####.. */ 
 	0x02, /* ......#. */ 
 	0x01, /* .......# */ 
-// Chunk[20]
+// Chunk[18]
 	0x48, // Type=1, Length=8
-	0x02, /* ......#. */ 
-// Chunk[21]
+	0xFD, /* ######.# */ 
+// Chunk[19]
 	0x48, // Type=1, Length=8
 	0x1F, /* ...##### */ 
-// Chunk[22]
+// Chunk[20]
 	0x42, // Type=1, Length=2
-	0x40, /* .#...... */ 
-// Chunk[23]
+	0xBF, /* #.###### */ 
+// Chunk[21]
 	0xC1, // Type=3, Length=1
 	0x3F, /* ..###### */ 
-// Chunk[24]
+// Chunk[22]
 	0x05, // Type=0, Length=5
-// Chunk[25]
+// Chunk[23]
 	0x42, // Type=1, Length=2
-	0x02, /* ......#. */ 
+	0xFD, /* ######.# */ 
+// Chunk[24]
+	0xC1, // Type=3, Length=1
+	0xFC, /* ######.. */ 
+// Chunk[25]
+	0x06, // Type=0, Length=6
 // Chunk[26]
 	0xC1, // Type=3, Length=1
-	0x03, /* ......## */ 
+	0x3E, /* ..#####. */ 
 // Chunk[27]
-	0x06, // Type=0, Length=6
+	0x42, // Type=1, Length=2
+	0x22, /* ..#...#. */ 
 // Chunk[28]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
 // Chunk[29]
-	0x42, // Type=1, Length=2
-	0x22, /* ..#...#. */ 
-// Chunk[30]
-	0xC1, // Type=3, Length=1
-	0x3E, /* ..#####. */ 
-// Chunk[31]
 	0x43, // Type=1, Length=3
 	0x20, /* ..#..... */ 
-// Chunk[32]
+// Chunk[30]
 	0xC2, // Type=3, Length=2
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[33]
+// Chunk[31]
 	0x42, // Type=1, Length=2
 	0x22, /* ..#...#. */ 
-// Chunk[34]
+// Chunk[32]
 	0xC1, // Type=3, Length=1
 	0x3C, /* ..####.. */ 
-// Chunk[35]
+// Chunk[33]
 	0x43, // Type=1, Length=3
 	0x22, /* ..#...#. */ 
-// Chunk[36]
+// Chunk[34]
 	0xC2, // Type=3, Length=2
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
+// Chunk[35]
+	0x42, // Type=1, Length=2
+	0x20, /* ..#..... */ 
+// Chunk[36]
+	0xC1, // Type=3, Length=1
+	0x38, /* ..###... */ 
 // Chunk[37]
 	0x42, // Type=1, Length=2
 	0x20, /* ..#..... */ 
 // Chunk[38]
-	0xC1, // Type=3, Length=1
-	0x38, /* ..###... */ 
-// Chunk[39]
-	0x42, // Type=1, Length=2
-	0x20, /* ..#..... */ 
-// Chunk[40]
 	0xC2, // Type=3, Length=2
 	0x3E, /* ..#####. */ 
 	0x00, /* ........ */ 
-// Chunk[41]
+// Chunk[39]
 	0x44, // Type=1, Length=4
 	0x22, /* ..#...#. */ 
-// Chunk[42]
+// Chunk[40]
 	0x42, // Type=1, Length=2
 	0x14, /* ...#.#.. */ 
-// Chunk[43]
+// Chunk[41]
 	0xC1, // Type=3, Length=1
 	0x1C, /* ...###.. */ 
-// Chunk[44]
+// Chunk[42]
 	0x07, // Type=0, Length=7
-// Chunk[45]
+// Chunk[43]
 	0xC3, // Type=3, Length=3
 	0x10, /* ...#.... */ 
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[46]
+// Chunk[44]
 	0x42, // Type=1, Length=2
 	0x20, /* ..#..... */ 
-// Chunk[47]
+// Chunk[45]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
-// Chunk[48]
+// Chunk[46]
 	0x42, // Type=1, Length=2
 	0x02, /* ......#. */ 
-// Chunk[49]
+// Chunk[47]
 	0xC3, // Type=3, Length=3
 	0x3E, /* ..#####. */ 
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[50]
-	0x4E, // Type=1, Length=14
+// Chunk[48]
+	0x46, // Type=1, Length=6
 	0x08, /* ....#... */ 
-// Chunk[51]
+// Chunk[49]
+	0x48, // Type=1, Length=8
+	0xF7, /* ####.### */ 
+// Chunk[50]
 	0xC2, // Type=3, Length=2
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[52]
+// Chunk[51]
 	0x42, // Type=1, Length=2
 	0x20, /* ..#..... */ 
-// Chunk[53]
+// Chunk[52]
 	0xC1, // Type=3, Length=1
 	0x26, /* ..#..##. */ 
-// Chunk[54]
+// Chunk[53]
 	0x42, // Type=1, Length=2
 	0x22, /* ..#...#. */ 
-// Chunk[55]
+// Chunk[54]
 	0xC3, // Type=3, Length=3
 	0x3E, /* ..#####. */ 
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[56]
+// Chunk[55]
 	0x42, // Type=1, Length=2
 	0x22, /* ..#...#. */ 
-// Chunk[57]
+// Chunk[56]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
-// Chunk[58]
+// Chunk[57]
 	0x43, // Type=1, Length=3
 	0x22, /* ..#...#. */ 
-// Chunk[59]
+// Chunk[58]
 	0xC3, // Type=3, Length=3
 	0x00, /* ........ */ 
 	0x33, /* ..##..## */ 
 	0x2D, /* ..#.##.# */ 
-// Chunk[60]
+// Chunk[59]
 	0x45, // Type=1, Length=5
 	0x21, /* ..#....# */ 
-// Chunk[61]
+// Chunk[60]
 	0x10, // Type=0, Length=16
-// Chunk[62]
-	0xC5, // Type=3, Length=5
-	0x60, /* .##..... */ 
-	0x70, /* .###.... */ 
-	0x78, /* .####... */ 
-	0x7C, /* .#####.. */ 
-	0x7E, /* .######. */ 
-// Chunk[63]
-	0x42, // Type=1, Length=2
+// Chunk[61]
+	0xC7, // Type=3, Length=7
+	0x9F, /* #..##### */ 
+	0x8F, /* #...#### */ 
+	0x87, /* #....### */ 
+	0x83, /* #.....## */ 
+	0x81, /* #......# */ 
+	0x80, /* #....... */ 
 	0x7F, /* .####### */ 
+// Chunk[62]
+	0x09, // Type=0, Length=9
+// Chunk[63]
+	0xC7, // Type=3, Length=7
+	0xF9, /* #####..# */ 
+	0xF1, /* ####...# */ 
+	0xE1, /* ###....# */ 
+	0xC1, /* ##.....# */ 
+	0x81, /* #......# */ 
+	0x01, /* .......# */ 
+	0xFE, /* #######. */ 
 // Chunk[64]
 	0x09, // Type=0, Length=9
 // Chunk[65]
-	0xC5, // Type=3, Length=5
-	0x06, /* .....##. */ 
-	0x0E, /* ....###. */ 
-	0x1E, /* ...####. */ 
-	0x3E, /* ..#####. */ 
-	0x7E, /* .######. */ 
-// Chunk[66]
-	0x42, // Type=1, Length=2
-	0x01, /* .......# */ 
-// Chunk[67]
-	0x09, // Type=0, Length=9
-// Chunk[68]
 	0x43, // Type=1, Length=3
 	0x1F, /* ...##### */ 
-// Chunk[69]
+// Chunk[66]
 	0x06, // Type=0, Length=6
-// Chunk[70]
+// Chunk[67]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
-// Chunk[71]
+// Chunk[68]
 	0x45, // Type=1, Length=5
 	0x22, /* ..#...#. */ 
-// Chunk[72]
+// Chunk[69]
 	0xC2, // Type=3, Length=2
 	0x3E, /* ..#####. */ 
 	0x00, /* ........ */ 
-// Chunk[73]
+// Chunk[70]
 	0x47, // Type=1, Length=7
 	0x08, /* ....#... */ 
-// Chunk[74]
+// Chunk[71]
 	0xC5, // Type=3, Length=5
 	0x00, /* ........ */ 
 	0x22, /* ..#...#. */ 
 	0x32, /* ..##..#. */ 
 	0x2A, /* ..#.#.#. */ 
 	0x26, /* ..#..##. */ 
-// Chunk[75]
+// Chunk[72]
 	0x43, // Type=1, Length=3
 	0x22, /* ..#...#. */ 
-// Chunk[76]
+// Chunk[73]
 	0xC2, // Type=3, Length=2
 	0x00, /* ........ */ 
 	0x3E, /* ..#####. */ 
-// Chunk[77]
+// Chunk[74]
 	0x45, // Type=1, Length=5
 	0x20, /* ..#..... */ 
-// Chunk[78]
+// Chunk[75]
 	0xCB, // Type=3, Length=11
 	0x3E, /* ..#####. */ 
 	0x00, /* ........ */ 
@@ -390,22 +389,22 @@ const unsigned char g_DataScore_Patterns[] =
 	0x08, /* ....#... */ 
 	0x00, /* ........ */ 
 	0x3C, /* ..####.. */ 
-// Chunk[79]
+// Chunk[76]
 	0x42, // Type=1, Length=2
 	0x24, /* ..#..#.. */ 
-// Chunk[80]
+// Chunk[77]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
-// Chunk[81]
+// Chunk[78]
 	0x42, // Type=1, Length=2
 	0x22, /* ..#...#. */ 
-// Chunk[82]
+// Chunk[79]
 	0xC1, // Type=3, Length=1
 	0x3E, /* ..#####. */ 
 // Zero terminator
 	0x00, // 
 };
-// Patterns size: 238 Bytes
+// Patterns size: 240 Bytes
 
 // Colors Table
 const unsigned char g_DataScore_Colors[] =
@@ -419,7 +418,7 @@ const unsigned char g_DataScore_Colors[] =
 	0xFC, /* ######.. */ 
 // Chunk[2]
 	0x46, // Type=1, Length=6
-	0x3C, /* ..####.. */ 
+	0xC3, /* ##....## */ 
 // Chunk[3]
 	0xC3, // Type=3, Length=3
 	0xCC, /* ##..##.. */ 
@@ -429,236 +428,182 @@ const unsigned char g_DataScore_Colors[] =
 	0x46, // Type=1, Length=6
 	0xCC, /* ##..##.. */ 
 // Chunk[5]
-	0xC2, // Type=3, Length=2
-	0xCF, /* ##..#### */ 
-	0xC3, /* ##....## */ 
+	0xC1, // Type=3, Length=1
+	0xFC, /* ######.. */ 
 // Chunk[6]
-	0x4D, // Type=1, Length=13
-	0x3C, /* ..####.. */ 
+	0x4E, // Type=1, Length=14
+	0xC3, /* ##....## */ 
 // Chunk[7]
-	0x47, // Type=1, Length=7
+	0x48, // Type=1, Length=8
 	0xFC, /* ######.. */ 
 // Chunk[8]
-	0xC1, // Type=3, Length=1
-	0xCF, /* ##..#### */ 
-// Chunk[9]
 	0x48, // Type=1, Length=8
 	0xCC, /* ##..##.. */ 
+// Chunk[9]
+	0x70, // Type=1, Length=48
+	0xFC, /* ######.. */ 
 // Chunk[10]
-	0x46, // Type=1, Length=6
-	0xFC, /* ######.. */ 
+	0x48, // Type=1, Length=8
+	0xC3, /* ##....## */ 
 // Chunk[11]
-	0xC1, // Type=3, Length=1
-	0xCF, /* ##..#### */ 
-// Chunk[12]
-	0x43, // Type=1, Length=3
-	0xFC, /* ######.. */ 
-// Chunk[13]
-	0x44, // Type=1, Length=4
-	0xCF, /* ##..#### */ 
-// Chunk[14]
-	0xC2, // Type=3, Length=2
-	0xFC, /* ######.. */ 
-	0xCF, /* ##..#### */ 
-// Chunk[15]
-	0x43, // Type=1, Length=3
-	0xFC, /* ######.. */ 
-// Chunk[16]
-	0x43, // Type=1, Length=3
-	0xCF, /* ##..#### */ 
-// Chunk[17]
-	0x43, // Type=1, Length=3
-	0xFC, /* ######.. */ 
-// Chunk[18]
-	0xC1, // Type=3, Length=1
-	0xCF, /* ##..#### */ 
-// Chunk[19]
-	0x48, // Type=1, Length=8
-	0xFC, /* ######.. */ 
-// Chunk[20]
-	0x42, // Type=1, Length=2
-	0xCF, /* ##..#### */ 
-// Chunk[21]
-	0xC1, // Type=3, Length=1
-	0xFC, /* ######.. */ 
-// Chunk[22]
-	0x42, // Type=1, Length=2
-	0xCF, /* ##..#### */ 
-// Chunk[23]
-	0x42, // Type=1, Length=2
-	0xFC, /* ######.. */ 
-// Chunk[24]
-	0x43, // Type=1, Length=3
-	0xCF, /* ##..#### */ 
-// Chunk[25]
-	0x44, // Type=1, Length=4
-	0xFC, /* ######.. */ 
-// Chunk[26]
-	0x48, // Type=1, Length=8
-	0x3C, /* ..####.. */ 
-// Chunk[27]
 	0x48, // Type=1, Length=8
 	0x91, /* #..#...# */ 
+// Chunk[12]
+	0x43, // Type=1, Length=3
+	0xC3, /* ##....## */ 
+// Chunk[13]
+	0x45, // Type=1, Length=5
+	0xCC, /* ##..##.. */ 
+// Chunk[14]
+	0x43, // Type=1, Length=3
+	0xC3, /* ##....## */ 
+// Chunk[15]
+	0x46, // Type=1, Length=6
+	0xCC, /* ##..##.. */ 
+// Chunk[16]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
+// Chunk[17]
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
+// Chunk[18]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
+// Chunk[19]
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
+// Chunk[20]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
+// Chunk[21]
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
+// Chunk[22]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
+// Chunk[23]
+	0x47, // Type=1, Length=7
+	0xCC, /* ##..##.. */ 
+// Chunk[24]
+	0xC2, // Type=3, Length=2
+	0xFC, /* ######.. */ 
+	0xCC, /* ##..##.. */ 
+// Chunk[25]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
+// Chunk[26]
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
+// Chunk[27]
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
 // Chunk[28]
-	0x42, // Type=1, Length=2
-	0x3C, /* ..####.. */ 
+	0x48, // Type=1, Length=8
+	0xC2, /* ##....#. */ 
 // Chunk[29]
 	0xC1, // Type=3, Length=1
-	0xC3, /* ##....## */ 
+	0xCC, /* ##..##.. */ 
 // Chunk[30]
-	0x45, // Type=1, Length=5
-	0xCC, /* ##..##.. */ 
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
 // Chunk[31]
-	0x43, // Type=1, Length=3
-	0x3C, /* ..####.. */ 
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
 // Chunk[32]
-	0x46, // Type=1, Length=6
-	0xCC, /* ##..##.. */ 
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
 // Chunk[33]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
+	0xC1, // Type=3, Length=1
+	0xCC, /* ##..##.. */ 
 // Chunk[34]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
+	0x47, // Type=1, Length=7
+	0xFC, /* ######.. */ 
 // Chunk[35]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[36]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[37]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[38]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[39]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[40]
-	0x47, // Type=1, Length=7
-	0xCC, /* ##..##.. */ 
-// Chunk[41]
-	0xC2, // Type=3, Length=2
-	0xFC, /* ######.. */ 
-	0xCC, /* ##..##.. */ 
-// Chunk[42]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[43]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[44]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[45]
-	0x48, // Type=1, Length=8
-	0x2C, /* ..#.##.. */ 
-// Chunk[46]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[47]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[48]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[49]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[50]
-	0xC1, // Type=3, Length=1
-	0xCC, /* ##..##.. */ 
-// Chunk[51]
-	0x47, // Type=1, Length=7
-	0xFC, /* ######.. */ 
-// Chunk[52]
 	0x48, // Type=1, Length=8
 	0x11, /* ...#...# */ 
-// Chunk[53]
+// Chunk[36]
 	0x44, // Type=1, Length=4
 	0xCC, /* ##..##.. */ 
-// Chunk[54]
+// Chunk[37]
 	0xC1, // Type=3, Length=1
 	0x22, /* ..#...#. */ 
-// Chunk[55]
+// Chunk[38]
 	0x43, // Type=1, Length=3
 	0xCC, /* ##..##.. */ 
-// Chunk[56]
+// Chunk[39]
 	0x46, // Type=1, Length=6
-	0x3C, /* ..####.. */ 
-// Chunk[57]
+	0xC3, /* ##....## */ 
+// Chunk[40]
 	0xC2, // Type=3, Length=2
 	0xFC, /* ######.. */ 
 	0x11, /* ...#...# */ 
-// Chunk[58]
+// Chunk[41]
 	0x45, // Type=1, Length=5
 	0xCC, /* ##..##.. */ 
-// Chunk[59]
+// Chunk[42]
 	0xC3, // Type=3, Length=3
 	0x33, /* ..##..## */ 
 	0xFF, /* ######## */ 
 	0x11, /* ...#...# */ 
-// Chunk[60]
-	0x45, // Type=1, Length=5
-	0x3C, /* ..####.. */ 
-// Chunk[61]
-	0xC2, // Type=3, Length=2
+// Chunk[43]
+	0x46, // Type=1, Length=6
 	0xC3, /* ##....## */ 
-	0xCF, /* ##..#### */ 
-// Chunk[62]
+// Chunk[44]
+	0xC1, // Type=3, Length=1
+	0xFC, /* ######.. */ 
+// Chunk[45]
 	0x44, // Type=1, Length=4
 	0x11, /* ...#...# */ 
-// Chunk[63]
+// Chunk[46]
 	0x45, // Type=1, Length=5
 	0x99, /* #..##..# */ 
-// Chunk[64]
+// Chunk[47]
 	0x43, // Type=1, Length=3
 	0x91, /* #..#...# */ 
-// Chunk[65]
+// Chunk[48]
 	0x45, // Type=1, Length=5
 	0x99, /* #..##..# */ 
-// Chunk[66]
+// Chunk[49]
 	0xC1, // Type=3, Length=1
 	0xCC, /* ##..##.. */ 
-// Chunk[67]
+// Chunk[50]
 	0x47, // Type=1, Length=7
 	0xFC, /* ######.. */ 
-// Chunk[68]
+// Chunk[51]
 	0xC1, // Type=3, Length=1
 	0xCC, /* ##..##.. */ 
-// Chunk[69]
+// Chunk[52]
 	0x47, // Type=1, Length=7
 	0xFC, /* ######.. */ 
-// Chunk[70]
+// Chunk[53]
 	0xC1, // Type=3, Length=1
 	0xCC, /* ##..##.. */ 
-// Chunk[71]
+// Chunk[54]
 	0x47, // Type=1, Length=7
 	0xFC, /* ######.. */ 
-// Chunk[72]
+// Chunk[55]
 	0xC1, // Type=3, Length=1
 	0xCC, /* ##..##.. */ 
-// Chunk[73]
+// Chunk[56]
 	0x47, // Type=1, Length=7
 	0xFC, /* ######.. */ 
-// Chunk[74]
+// Chunk[57]
 	0xC1, // Type=3, Length=1
 	0xCC, /* ##..##.. */ 
-// Chunk[75]
+// Chunk[58]
 	0x45, // Type=1, Length=5
 	0xFC, /* ######.. */ 
-// Chunk[76]
+// Chunk[59]
 	0xC3, // Type=3, Length=3
 	0xCC, /* ##..##.. */ 
 	0xFC, /* ######.. */ 
 	0xCC, /* ##..##.. */ 
-// Chunk[77]
+// Chunk[60]
 	0x47, // Type=1, Length=7
 	0xFC, /* ######.. */ 
 // Zero terminator
 	0x00, // 
 };
-// Colors size: 169 Bytes
+// Colors size: 132 Bytes
 
-// Total size: 935 Bytes
+// Total size: 900 Bytes

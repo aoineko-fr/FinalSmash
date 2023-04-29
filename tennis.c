@@ -27,10 +27,10 @@
 
 //-----------------------------------------------------------------------------
 // CONFIG
-#define GAME_VERSION				"V0.2.20"
+#define GAME_VERSION				"V0.2.21"
 #define DEBUG						1
 #define MSX2_ENHANCE				1
-#define MUSIC_ENABLE				0
+#define MUSIC_ENABLE				1
 #define SFX_ENABLE					1
 #define DISPLAY_CREDITS				1
 #define COMPRESS_NAMES				0
@@ -929,7 +929,7 @@ const MenuItem g_MenuTraining[] =
 // Menu 4 - Option
 const MenuItem g_MenuOption[] =
 {
-	// { "MUSIC",		MENU_ITEM_ACTION, &Menu_SetMusic, 0 },
+	{ "MUSIC",		MENU_ITEM_ACTION, &Menu_SetMusic, 0 },
 	{ "SFX",		MENU_ITEM_ACTION, &Menu_SetSFX, 0 },
 	{ "SHADE",		MENU_ITEM_BOOL, &g_FlickerShadow, 0 },
 	{ "FREQ",		MENU_ITEM_ACTION, Menu_SetFreq, 0 },
@@ -945,7 +945,7 @@ const MenuItem g_MenuOption[] =
 // Menu 5 - Credits
 const MenuItem g_MenuCredits[] =
 {
-	{ "PIXEL PHENIX # 2021",	MENU_ITEM_TEXT, NULL, (i8)-1 },
+	{ "PIXEL PHENIX # 2023",	MENU_ITEM_TEXT, NULL, (i8)-1 },
 	{ "",						MENU_ITEM_DISABLE, NULL, 0 },
 	{ "CODE:  AOINEKO",			MENU_ITEM_TEXT, NULL, (i8)-2 },
 	{ "GRAPH: AOINEKO & GFX",	MENU_ITEM_TEXT, NULL, (i8)-2 },
@@ -1135,6 +1135,7 @@ const c8* Menu_StartTrain(u8 op, i8 value)
 ///
 const char* Menu_SetLevel(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1154,6 +1155,7 @@ const char* Menu_SetLevel(u8 op, i8 value)
 ///
 const char* Menu_SetSets(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1173,6 +1175,7 @@ const char* Menu_SetSets(u8 op, i8 value)
 ///
 const char* Menu_SetShot(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1192,6 +1195,7 @@ const char* Menu_SetShot(u8 op, i8 value)
 ///
 const char* Menu_SetDir(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1212,6 +1216,7 @@ const char* Menu_SetDir(u8 op, i8 value)
 ///
 const char* Menu_SetMusic(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1235,6 +1240,7 @@ const char* Menu_SetMusic(u8 op, i8 value)
 ///
 const char* Menu_SetSFX(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1270,6 +1276,7 @@ const char* Menu_SetInput(u8 op, i8 value)
 ///
 const char* Menu_SetSide(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1288,6 +1295,7 @@ const char* Menu_SetSide(u8 op, i8 value)
 ///
 const char* Menu_SetFreq(u8 op, i8 value)
 {
+	value;
 	switch(op)
 	{
 	case MENU_ACTION_SET:
@@ -1319,6 +1327,7 @@ const char* Menu_SetFreq(u8 op, i8 value)
 ///
 const char* Menu_CreditScroll(u8 op, i8 value)
 {
+	value;
 	if(op == MENU_ACTION_GET)
 	{	
 		u8 len = String_Length(g_CreditScroll);
@@ -3543,7 +3552,7 @@ bool State_TitleUpdate()
 
 		Print_SelectTextFont(g_DataFont, OFFSET_TITLE_FONT_DEF);
 		Print_SetPosition(7, 16);
-		Print_DrawText("PIXEL PHENIX # 2021");
+		Print_DrawText("PIXEL PHENIX # 2023");
 
 		Print_SelectTextFont(g_DataFont, OFFSET_TITLE_FONT_ALT);
 		Print_SetPosition(11, 22);
@@ -3611,7 +3620,7 @@ bool State_ScoreStart()
 {
 	// Display Score board
 	VDP_FillScreen_GM2(0);
-	GM2_LAYOUT(g_DataScore_Names, 3, SCORE_BOARD_Y, 27, 10);
+	GM2_LAYOUT(g_DataScoreL0_Names, 3, SCORE_BOARD_Y, 27, 10);
 	GM2_LAYOUT(g_DataScoreL1_Names, 16, SCORE_BOARD_Y+10, 14, 12);
 
 	// Hide sprites

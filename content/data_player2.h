@@ -1,10 +1,10 @@
-// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄           
+// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄
 // ██  ▀  █▄  ▀██▄ ▀ ▄█ ▄  ▄█▄█ ▄▀██
 // █  █ █  ▀▀  ▄█  █  █ ██ ██ █  ▀██
-// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀ 
-// ─────────────────────────────────────────────────────────────────────────────
-// Data generated using MSXimg 2.0.0 on Sat Nov  5 21:48:44 2022
+// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀
+// Data generated using MSXimg 1.16.1 on Sun Jan 22 19:35:03 2023
 // by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
+// ─────────────────────────────────────────────────────────────────────────────
 // Generation parameters:
 //  - Input file:     datasrc\players.png
 //  - Mode:           Sprite
@@ -7093,4 +7093,4 @@ __at(0x19A0) const unsigned char g_DataPlayer2[] =
 	0x00, /* ........ */ 
 	0x00, /* ........ */ 
 };
-// Names size: 6048 Bytes
+// Patterns size: 6048 Bytes

@@ -1,11 +1,11 @@
-// ██▀▀█▀▀██▀▀▀▀▀▀▀█▀▀█ ▄▄   ▄      
-// ██  ▀  █▄  ▀██▄ ▀ ▄█ ██▄  ▄  ██▀▄
-// █  █ █  ▀▀  ▄█  █  █ ██▄▀ ██ ██ █
-// ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀             
-// MSXbin 1.3.1 by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
-// File generated on Sat Nov  5 21:48:44 2022
+// â–ˆâ–ˆâ–€â–€â–ˆâ–€â–€â–ˆâ–ˆâ–€â–€â–€â–€â–€â–€â–€â–ˆâ–€â–€â–ˆ â–„â–„   â–„
+// â–ˆâ–ˆ  â–€  â–ˆâ–„  â–€â–ˆâ–ˆâ–„ â–€ â–„â–ˆ â–ˆâ–ˆâ–„  â–„  â–ˆâ–ˆâ–€â–„
+// â–ˆ  â–ˆ â–ˆ  â–€â–€  â–„â–ˆ  â–ˆ  â–ˆ â–ˆâ–ˆâ–„â–€ â–ˆâ–ˆ â–ˆâ–ˆ â–ˆ
+// â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€
+// MSXbin 1.4.0 by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
+// File generated on Sun Jan 22 19:35:03 2023
 // Soure file: datasrc\ayfx_bank.afb
-__at(0x3536) const unsigned char g_DataSFX[] = {
+__at(0x3530) const unsigned char g_DataSFX[] = {
 	0x13, 0x25, 0x00, 0x56, 0x00, 0x8D, 0x00, 0xB6, 0x00, 0xCA, 0x00, 0xDC, 0x00, 0x64, 0x01, 0x99, //      0
 	0x01, 0xC3, 0x01, 0xD4, 0x01, 0x28, 0x02, 0x59, 0x02, 0x89, 0x02, 0xBA, 0x02, 0x02, 0x03, 0x2F, //     16
 	0x03, 0x62, 0x03, 0x75, 0x03, 0xB4, 0x03, 0xEF, 0x6F, 0x01, 0x00, 0xAE, 0x32, 0x01, 0xAD, 0x1A, //     32
