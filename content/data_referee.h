@@ -2,7 +2,7 @@
 // ██  ▀  █▄  ▀██▄ ▀ ▄█ ▄  ▄█▄█ ▄▀██
 // █  █ █  ▀▀  ▄█  █  █ ██ ██ █  ▀██
 // ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀
-// Data generated using MSXimg 1.16.1 on Sun Jan 22 19:35:03 2023
+// Data generated using MSXimg 1.17.0 on Sun Mar 24 11:59:54 2024
 // by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
 // ─────────────────────────────────────────────────────────────────────────────
 // Generation parameters:
@@ -17,7 +17,7 @@
 //  - Offset:         208
 
 // Names Table
-__at(0x3374) const unsigned char g_DataReferee_Names[] =
+const unsigned char g_DataReferee_Names[] =
 {
 	0xD0, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD2, 
 	0xD3, 0xD4, 0xD5, 0xD6, 0xD7, 0xD8, 0xD4, 0xD4, 0xD4, 0xD4, 0xD4, 0xD9, 
@@ -29,7 +29,7 @@ __at(0x3374) const unsigned char g_DataReferee_Names[] =
 // Names size: 72 Bytes
 
 // Patterns Table
-__at(0x33BC) const unsigned char g_DataReferee_Patterns[] =
+const unsigned char g_DataReferee_Patterns[] =
 {
 // Chunk[0]
 	0xC1, // Type=3, Length=1
@@ -283,7 +283,7 @@ __at(0x33BC) const unsigned char g_DataReferee_Patterns[] =
 // Patterns size: 176 Bytes
 
 // Colors Table
-__at(0x346C) const unsigned char g_DataReferee_Colors[] =
+const unsigned char g_DataReferee_Colors[] =
 {
 // Chunk[0]
 	0xC1, // Type=3, Length=1

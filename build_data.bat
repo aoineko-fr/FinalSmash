@@ -18,7 +18,7 @@ echo ===========================================================================
 echo.
 echo -----------------------------------------------------------------------------
 echo  Convert Players Sprites...
-%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_player1.h -mode sprt -name g_DataPlayer1 -pos 0 0 -size 16 24 -num 9 3 -at 0x0200 ^
+%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_player1.h -mode sprt -name g_DataPlayer1 -pos 0 0 -size 16 24 -num 9 3 ^
 	-l i16 0  0 1 1 0x010101 ^
 	-l i16 0  0 1 1 0x010101 0x403B78 0x7F7F7F 0x7F453F ^
 	-l i16 0  8 1 1 0x8076F1 0x403B78 ^
@@ -29,7 +29,7 @@ echo  Convert Players Sprites...
 	-l i8  0 16 2 1 0xFFFFFF 0x7F7F7F ^
 	-l i8  0 16 2 1 0xFF897D 0x7F453F
 
-%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_player2.h -mode sprt -name g_DataPlayer2 -pos 0 96 -size 16 24 -num 9 3 -at %errorlevel% ^
+%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_player2.h -mode sprt -name g_DataPlayer2 -pos 0 96 -size 16 24 -num 9 3 ^
 	-l i8  0 0 2 1 0x010101 ^
 	-l i8  0 0 2 1 0x010101 0x1F5C24 0x7F7F7F 0x7F453F ^
 	-l i8  0 0 2 1 0xFFFFFF 0x7F7F7F ^
@@ -40,14 +40,14 @@ echo  Convert Players Sprites...
 	-l i16 0 8 1 1 0xFFFFFF 0x7F7F7F ^
 	-l i16 0 8 1 1 0xFF897D 0x7F453F
 	
-%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_launcher0.h -mode sprt -name g_DataLauncher0 -pos 160 88 -size 16 40 -num 1 1 -compress rlep -at %errorlevel% ^
+%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_launcher0.h -mode sprt -name g_DataLauncher0 -pos 160 88 -size 16 40 -num 1 1 -compress rlep ^
 	-l i16 0  0 1 2 0x010101 ^
 	-l i16 0  0 1 2 0x010101 0x706944 0x1F5C24 0x7F7F7F ^
 	-l i16 0  0 1 1 0xDED087 0x706944 ^
 	-l i16 0  8 1 1 0x3EB849 0x1F5C24 ^
 	-l i16 0 16 1 1 0xFFFFFF 0x7F7F7F
 
-%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_launcher1.h -mode sprt -name g_DataLauncher1 -pos 176 88 -size 16 40 -num 1 1 -compress rlep -at %errorlevel% ^
+%MSXtk%\MSXimg.exe datasrc\players.png -out content\data_launcher1.h -mode sprt -name g_DataLauncher1 -pos 176 88 -size 16 40 -num 1 1 -compress rlep ^
 	-l i16 0  8 1 2 0x010101 ^
 	-l i16 0  8 1 2 0x010101 0x706944 0x1F5C24 0x7F7F7F ^
 	-l i16 0  7 1 1 0xDED087 0x706944 ^
@@ -58,23 +58,23 @@ echo.
 echo -----------------------------------------------------------------------------
 echo  Convert Misc...
 
-%MSXtk%\MSXimg.exe datasrc\logo_ball.png -out content\data_logo_ball.h -mode sprt -name g_DataLogoBall -pos 164 41 -size 16 16 -num 2 2 -compress rlep -at %errorlevel% ^
+%MSXtk%\MSXimg.exe datasrc\logo_ball.png -out content\data_logo_ball.h -mode sprt -name g_DataLogoBall -pos 164 41 -size 16 16 -num 2 2 -compress rlep ^
 	-l i16 0 0 1 1 0xDED087 ^
 	-l i16 0 0 1 1 0xB95E51
 
-%MSXtk%\MSXimg.exe datasrc\misc.png  -out content\data_referee.h -mode gm2   -compress rlep	-name g_DataReferee -pos 0 0   -size 96  48  -offset 208 -at %errorlevel%
+%MSXtk%\MSXimg.exe datasrc\misc.png  -out content\data_referee.h -mode gm2   -compress rlep	-name g_DataReferee -pos 0 0   -size 96  48  -offset 208
 
 echo.
 echo -----------------------------------------------------------------------------
 echo  Convert SFX...
 
-%MSXtk%\MSXbin.exe datasrc\ayfx_bank.afb -o content\data_sfx.h -t g_DataSFX -ad -at %errorlevel%
+%MSXtk%\MSXbin.exe datasrc\ayfx_bank.afb -o content\data_sfx.h -t g_DataSFX -ad
 
 echo.
 echo -----------------------------------------------------------------------------
 echo  Convert Music...
 
-%MSXtk%\MSXbin.exe datasrc\intro.pt3 -o content\data_music.h -t g_DataMusic -skip 0 100 -ad -pt3 -at %errorlevel%
+%MSXtk%\MSXbin.exe datasrc\intro.pt3 -o content\data_music.h -t g_DataMusic -skip 0 100 -ad -pt3 
 
 echo.
 echo Page 0 Last Address: %errorlevel%

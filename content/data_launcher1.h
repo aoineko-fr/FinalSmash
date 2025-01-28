@@ -2,7 +2,7 @@
 // ██  ▀  █▄  ▀██▄ ▀ ▄█ ▄  ▄█▄█ ▄▀██
 // █  █ █  ▀▀  ▄█  █  █ ██ ██ █  ▀██
 // ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀          ▀▀
-// Data generated using MSXimg 1.16.1 on Sun Jan 22 19:35:03 2023
+// Data generated using MSXimg 1.17.0 on Sun Mar 24 11:59:54 2024
 // by Guillaume "Aoineko" Blanchard (2022) under CC BY-SA free license
 // ─────────────────────────────────────────────────────────────────────────────
 // Generation parameters:
@@ -16,7 +16,7 @@
 //  - Skip empty:     FALSE
 
 // Sprites table
-__at(0x31FA) const unsigned char g_DataLauncher1[] =
+const unsigned char g_DataLauncher1[] =
 {
 // Chunk[0]
 	0xCD, // Type=3, Length=13

@@ -14,20 +14,14 @@
 //
 //=============================================================================
 
-// Player 1 sprites
-#include "content/data_player1.h"
-
-// Player 2 Sprites
-#include "content/data_player2.h" 
-
-// SFX
-#include "content/data_sfx.h"
-
-// Music
-#include "content/data_music.h"
-
-// Menu title ball
-#include "content/data_logo_ball.h"
+extern const unsigned char g_DataPlayer1[];
+extern const unsigned char g_DataPlayer2[];
+extern const unsigned char g_DataSFX[];
+extern const unsigned char g_DataMusic[];
+extern const unsigned char g_DataLogoBall[];
+extern const unsigned char g_DataCourt_Names[];
+extern const unsigned char g_DataCourt_Patterns[];
+extern const unsigned char g_DataCourt_Colors[];
 
 //=============================================================================
 //
@@ -37,9 +31,6 @@
 
 // Menu title (GM2 tables)
 #include "content/data_logo.h"
-
-// Court background (GM2 tables)
-#include "content/data_court.h"
 
 // Score board
 #include "content/data_board.h"

@@ -27,7 +27,7 @@
 
 //-----------------------------------------------------------------------------
 // CONFIG
-#define GAME_VERSION				"V0.2.21"
+#define GAME_VERSION				"V0.3.0"
 #define DEBUG						1
 #define MSX2_ENHANCE				1
 #define MUSIC_ENABLE				1
@@ -4090,14 +4090,14 @@ bool State_TrainingUpdate()
 //
 //=============================================================================
 
-#if (TARGET_TYPE == TYPE_ROM)
-//-----------------------------------------------------------------------------
-/// ISR for 48K ROM
-void VDP_InterruptHandler()
-{
-	Game_VSyncHook();
-}
-#endif
+// #if (TARGET_TYPE == TYPE_ROM)
+// //-----------------------------------------------------------------------------
+// /// ISR for 48K ROM
+// void VDP_InterruptHandler()
+// {
+// 	Game_VSyncHook();
+// }
+// #endif
 
 //-----------------------------------------------------------------------------
 /// Main loop
@@ -4155,4 +4155,4 @@ void main()
 	}
 }
 
-void Bios_SetHookCallback(u16 hook, callback cb) {}
+// void Bios_SetHookCallback(u16 hook, callback cb) {}
