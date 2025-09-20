@@ -52,7 +52,7 @@ ProjModules = [ ProjName ];
 // ProjSegments = ProjName;
 
 //-- List of library modules to build (array)
-LibModules = [ "vdp", "print", "input", "memory", "math", "game", "pt3/pt3_player", "ayfx/ayfx_player" ];
+LibModules = [ "vdp", "print", "input", "memory", "math", "game/main", "pt3/pt3_player", "ayfx/ayfx_player" ];
 
 //-- Additional sources to be compiled and linked with the project (array)
 // AddSources = [];
@@ -94,9 +94,11 @@ Machine = "12";
 //   - ROM_KONAMI_SCC   .rom    Konami MegaROM SCC (aka Konami5): 8 KB segments for a total of 64 KB to 2 MB
 //   - ROM_NEO8         .rom    NEO-8: 8 KB segments for a total of 1 MB to 32 MB
 //   - ROM_NEO16        .rom    NEO-16: 16 KB segments for a total of 1 MB to 64 MB
+//   - ROM_YAMANOOTO    .rom    Yamanooto: 8 KB segments for a total up to 8 MB
+//   - ROM_ASCII16X     .rom    ASCII16-X: 16 KB segments for a total up to 64 MB
 Target = "ROM_48K_ISR";
 
-//-- ROM mapper total size in KB (number). Must be a multiple of 8 or 16 depending on the mapper type (from 64 to 4096)
+//-- ROM mapper total size in KB (number). Must be a multiple of 8 or 16 depending on the mapper type (from 64 to 4096 for legacy mappers; can be up to 65536 for NEO-16 mapper)
 // ROMSize = 128;
 
 //-- Check for ROM boot skipping if a given key is pressed (boolean)
@@ -142,7 +144,7 @@ CustomISR = "VBLANK";
 //-- Overwrite RAM starting address (number). For example. 0xE0000 for 8K RAM machine
 ForceRamAddr = 0xE000;
 
-//-- List of raw data files to be added to final binary (array). Each entry must be in the following format: { offset=0x0000, file="myfile.bin" }
+//-- List of raw data files to be added to final binary (array). Each entry must be in the following format: { offset:0x0000, file:"myfile.bin" }
 // RawFiles = [];
 
 //-- List of data files to copy to disk (array)
@@ -162,10 +164,10 @@ ForceRamAddr = 0xE000;
 AppSignature = true;
 
 //-- Application company (*). Can be 2 character string or 16-bits integer (0~65535)
-AppCompany = "PH";
+AppCompany = "PP";
 
 //-- Application ID. Can be 2 character string or 16-bits integer (0~65535)
-AppID = 2;
+AppID = 0x0002;
 
 //-- Application extra data (array). Comma-separated bytes starting with data size
 // AppExtra = [];
@@ -223,6 +225,9 @@ DebugSymbols = false;
 
 //-- Additionnal options of Hex to Binary convertor (string)
 // HexBinOpt = "";
+
+//-- Generate Clang compatible Compilation database (boolean)
+// GenCompileDB = false;
 
 //-- Command lines to be executed before the build process (array)
 // PreBuildScripts = [];

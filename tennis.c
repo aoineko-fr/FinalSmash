@@ -13,8 +13,8 @@
 #include "input.h"
 #include "math.h"
 #include "string.h"
-#include "game.h"
-#include "game_menu.h"
+#include "game/main.h"
+#include "game/menu.h"
 #include "print.h"
 #include "pt3/pt3_player.h"
 #include "ayfx/ayfx_player.h"
@@ -1109,7 +1109,7 @@ u8			g_UnpackBuffer[512];
 ///
 const c8* Menu_StartMatch(u8 op, i8 value)
 {
-	if(op == MENU_ACTION_SET)
+	if (op == MENU_ACTION_SET)
 	{
 		g_GameMode = value;
 		Game_SetState(State_MatchStart);
@@ -1122,7 +1122,7 @@ const c8* Menu_StartMatch(u8 op, i8 value)
 ///
 const c8* Menu_StartTrain(u8 op, i8 value)
 {
-	if(op == MENU_ACTION_SET)
+	if (op == MENU_ACTION_SET)
 	{
 		g_GameMode = value;
 		Game_SetState(State_TrainingStart);
@@ -1136,16 +1136,16 @@ const c8* Menu_StartTrain(u8 op, i8 value)
 const char* Menu_SetLevel(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_Level = (g_Level + 1) % 3; break;
 	case MENU_ACTION_DEC: g_Level = (g_Level + 2) % 3; break;	
 	}
 
-	if(g_Level == LEVEL_EASY)
+	if (g_Level == LEVEL_EASY)
 		return "EASY";
-	else if(g_Level == LEVEL_MEDIUM)
+	else if (g_Level == LEVEL_MEDIUM)
 		return "MED";
 
 	return "HARD";
@@ -1156,16 +1156,16 @@ const char* Menu_SetLevel(u8 op, i8 value)
 const char* Menu_SetSets(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_OptionSets = (g_OptionSets + 1) % 3; break;
 	case MENU_ACTION_DEC: g_OptionSets = (g_OptionSets + 2) % 3; break;	
 	}
 
-	if(g_OptionSets == 0)
+	if (g_OptionSets == 0)
 		return "1";
-	else if(g_OptionSets == 1)
+	else if (g_OptionSets == 1)
 		return "3";
 
 	return "5";
@@ -1176,19 +1176,21 @@ const char* Menu_SetSets(u8 op, i8 value)
 const char* Menu_SetShot(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_TrainShot = (g_TrainShot + 1) % TRAIN_MAX; break;
 	case MENU_ACTION_DEC: g_TrainShot = (g_TrainShot + (TRAIN_MAX-1)) % TRAIN_MAX; break;	
 	}
 	
-	switch(g_TrainShot)
+	switch (g_TrainShot)
 	{
 	case TRAIN_BOTH: return "BOTH";
 	case TRAIN_FLAT: return "FLAT";
 	case TRAIN_LOB:  return "LOB";
 	};
+
+	return "";
 }
 
 //-----------------------------------------------------------------------------
@@ -1196,20 +1198,22 @@ const char* Menu_SetShot(u8 op, i8 value)
 const char* Menu_SetDir(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_TrainDir = (g_TrainDir + 1) % DIR_MAX; break;
 	case MENU_ACTION_DEC: g_TrainDir = (g_TrainDir + (DIR_MAX-1)) % DIR_MAX; break;	
 	}
 	
-	switch(g_TrainDir)
+	switch (g_TrainDir)
 	{
 	case DIR_RANDOM: return "RANDOM";
 	case DIR_CENTER: return "CENTER";
 	case DIR_RIGHT: return "RIGHT";
 	case DIR_LEFT: return "LEFT";
 	};
+
+	return "";
 }
 
 //-----------------------------------------------------------------------------
@@ -1217,13 +1221,13 @@ const char* Menu_SetDir(u8 op, i8 value)
 const char* Menu_SetMusic(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC:
 	case MENU_ACTION_DEC:
 		g_PlayMusic = 1 - g_PlayMusic;
-		if(g_PlayMusic)
+		if (g_PlayMusic)
 		{
 			PT3_InitSong(g_DataMusic);
 			PT3_Resume();
@@ -1241,13 +1245,13 @@ const char* Menu_SetMusic(u8 op, i8 value)
 const char* Menu_SetSFX(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC:
 	case MENU_ACTION_DEC:
 		g_PlaySFX = 1 - g_PlaySFX;
-		if(!g_PlaySFX)
+		if (!g_PlaySFX)
 		{
 			ayFX_Mute();
 			PT3_UpdatePSG();
@@ -1262,7 +1266,7 @@ const char* Menu_SetSFX(u8 op, i8 value)
 ///
 const char* Menu_SetInput(u8 op, i8 value)
 {
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_InputBinding[value] = (g_InputBinding[value] + 1) % BIND_MAX; break;
@@ -1277,7 +1281,7 @@ const char* Menu_SetInput(u8 op, i8 value)
 const char* Menu_SetSide(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC:
@@ -1285,7 +1289,7 @@ const char* Menu_SetSide(u8 op, i8 value)
 		 g_TrainSide = 1 - g_TrainSide; break;	
 	}
 	
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 		return "BOTTOM";
 	else
 		return "TOP";
@@ -1296,19 +1300,19 @@ const char* Menu_SetSide(u8 op, i8 value)
 const char* Menu_SetFreq(u8 op, i8 value)
 {
 	value;
-	switch(op)
+	switch (op)
 	{
 	case MENU_ACTION_SET:
 	case MENU_ACTION_INC: g_FreqOpt = (g_FreqOpt + 1) % FREQ_MAX; break;
 	case MENU_ACTION_DEC: g_FreqOpt = (g_FreqOpt + (FREQ_MAX - 1)) % FREQ_MAX; break;
 	}
 	
-	if(g_FreqOpt == FREQ_60HZ) 
+	if (g_FreqOpt == FREQ_60HZ) 
 	{
 		g_Freq = FREQ_60HZ;
 		return "60 HZ";
 	}
-	else if(g_FreqOpt == FREQ_50HZ)
+	else if (g_FreqOpt == FREQ_50HZ)
 	{
 		g_Freq = FREQ_50HZ;
 		return "50 HZ";
@@ -1316,7 +1320,7 @@ const char* Menu_SetFreq(u8 op, i8 value)
 	else
 	{
 		g_Freq = g_FreqDetected;
-		if(g_Freq == FREQ_50HZ)
+		if (g_Freq == FREQ_50HZ)
 			return "AUTO (50 HZ)";
 		else
 			return "AUTO (60 HZ)";
@@ -1328,10 +1332,10 @@ const char* Menu_SetFreq(u8 op, i8 value)
 const char* Menu_CreditScroll(u8 op, i8 value)
 {
 	value;
-	if(op == MENU_ACTION_GET)
+	if (op == MENU_ACTION_GET)
 	{	
 		u8 len = String_Length(g_CreditScroll);
-		for(u8 i=0; i < SCROLL_BUF_SIZE-1; ++i)
+		for (u8 i=0; i < SCROLL_BUF_SIZE-1; ++i)
 		{
 			u8 j = (i + g_CreditScrollCnt) % len;
 			g_CreditScrollBuf[i] = g_CreditScroll[j];
@@ -1360,23 +1364,23 @@ void Menu_DisplayItem(u8 item) __FASTCALL
 	VDP_FillVRAM_16K(0, dst, 32);
 	
 	// Draw item
-	if(item < g_CurrentMenu->ItemNum)
+	if (item < g_CurrentMenu->ItemNum)
 	{
 		MenuItem* pCurEntry = &g_CurrentMenu->Items[item];
-		if(g_MenuItem == item)
+		if (g_MenuItem == item)
 			Print_SelectTextFont(g_DataFont, OFFSET_TITLE_FONT_ALT);
 		else
 			Print_SelectTextFont(g_DataFont, OFFSET_TITLE_FONT_DEF);
 			
 		u8 x;
-		if((pCurEntry->Type == MENU_ITEM_GOTO) != 0)
+		if ((pCurEntry->Type == MENU_ITEM_GOTO) != 0)
 			x = MENU_ITEMS_X_GOTO;
 		else
 			x = MENU_ITEMS_X;
 		 
 		u8 y = MENU_ITEMS_Y;
 		
-		if(pCurEntry->Type == MENU_ITEM_TEXT)
+		if (pCurEntry->Type == MENU_ITEM_TEXT)
 			x += pCurEntry->Value;
 			
 		Print_SetPosition(x, y + item);
@@ -1384,41 +1388,41 @@ void Menu_DisplayItem(u8 item) __FASTCALL
 
 		Print_SetPosition(x + 9, y + item);
 
-		if(pCurEntry->Type == MENU_ITEM_ACTION)
+		if (pCurEntry->Type == MENU_ITEM_ACTION)
 		{
 			Menu_ActionCB cb = (Menu_ActionCB)pCurEntry->Action;
 			const c8* str = cb(MENU_ACTION_GET, pCurEntry->Value);
-			if(str)
+			if (str)
 			{
-				if(g_MenuItem == item)
+				if (g_MenuItem == item)
 					Print_DrawChar('<');
 				else
 					Print_Space();
 				Print_DrawText(str);
-				if(g_MenuItem == item)
+				if (g_MenuItem == item)
 					Print_DrawChar('>');
 			}
 		}
-		else if(pCurEntry->Type == MENU_ITEM_INT)
+		else if (pCurEntry->Type == MENU_ITEM_INT)
 		{
 			i8* data = (u8*)pCurEntry->Action;
-			if(g_MenuItem == item)
+			if (g_MenuItem == item)
 				Print_DrawChar('<');
 			else
 				Print_Space();
 			Print_DrawInt(*data);
-			if(g_MenuItem == item)
+			if (g_MenuItem == item)
 				Print_DrawChar('>');
 		}
-		else if(pCurEntry->Type == MENU_ITEM_BOOL)
+		else if (pCurEntry->Type == MENU_ITEM_BOOL)
 		{
 			u8* data = (u8*)pCurEntry->Action;
-			if(g_MenuItem == item)
+			if (g_MenuItem == item)
 				Print_DrawChar('<');
 			else
 				Print_Space();
 			Print_DrawChar(*data ? '/' : '\\');
-			if(g_MenuItem == item)
+			if (g_MenuItem == item)
 				Print_DrawChar('>');
 		}
 	}
@@ -1431,15 +1435,15 @@ void Menu_Initi(const Menu* menu) __FASTCALL
 	// Initialize menu
 	g_CurrentMenu = menu;
 	g_MenuItem = 0;
-	while(g_MenuItem < g_CurrentMenu->ItemNum)
+	while (g_MenuItem < g_CurrentMenu->ItemNum)
 	{
-		if(g_CurrentMenu->Items[g_MenuItem].Type < MENU_ITEM_EMPTY)
+		if (g_CurrentMenu->Items[g_MenuItem].Type < MENU_ITEM_EMPTY)
 			break;
 		g_MenuItem++;
 	}
 	
 	// Display menu items
-	for(u8 item = 0; item < MENU_ITEMS_H; ++item)
+	for (u8 item = 0; item < MENU_ITEMS_H; ++item)
 	{
 		Menu_DisplayItem(item);
 	}
@@ -1449,8 +1453,8 @@ void Menu_Initi(const Menu* menu) __FASTCALL
 ///
 bool Menu_PressRight()
 {
-	for(u8 i = 0; i < BIND_MAX; ++i)
-		if(g_Binding[i].inPressRight())
+	for (u8 i = 0; i < BIND_MAX; ++i)
+		if (g_Binding[i].inPressRight())
 			return TRUE;
 
 	return FALSE;
@@ -1460,8 +1464,8 @@ bool Menu_PressRight()
 ///
 bool Menu_PressLeft()
 {
-	for(u8 i = 0; i < BIND_MAX; ++i)
-		if(g_Binding[i].inPressLeft())
+	for (u8 i = 0; i < BIND_MAX; ++i)
+		if (g_Binding[i].inPressLeft())
 			return TRUE;
 
 	return FALSE;
@@ -1471,8 +1475,8 @@ bool Menu_PressLeft()
 ///
 bool Menu_PressUp()
 {
-	for(u8 i = 0; i < BIND_MAX; ++i)
-		if(g_Binding[i].inPressUp())
+	for (u8 i = 0; i < BIND_MAX; ++i)
+		if (g_Binding[i].inPressUp())
 			return TRUE;
 
 	return FALSE;
@@ -1482,8 +1486,8 @@ bool Menu_PressUp()
 ///
 bool Menu_PressDown()
 {
-	for(u8 i = 0; i < BIND_MAX; ++i)
-		if(g_Binding[i].inPressDown())
+	for (u8 i = 0; i < BIND_MAX; ++i)
+		if (g_Binding[i].inPressDown())
 			return TRUE;
 
 	return FALSE;
@@ -1493,8 +1497,8 @@ bool Menu_PressDown()
 ///
 bool Menu_PressTrigger()
 {
-	for(u8 i = 0; i < BIND_MAX; ++i)
-		if(g_Binding[i].inButton1() || g_Binding[i].inButton2())
+	for (u8 i = 0; i < BIND_MAX; ++i)
+		if (g_Binding[i].inButton1() || g_Binding[i].inButton2())
 			return TRUE;
 
 	return FALSE;
@@ -1506,26 +1510,26 @@ void Menu_Update()
 {
 	// Handle activation
 	MenuItem* pCurEntry = &g_CurrentMenu->Items[g_MenuItem];
-	if(Menu_PressTrigger())
+	if (Menu_PressTrigger())
 	{
 		ayFX_PlayBank(14, 0);
-		if(pCurEntry->Type == MENU_ITEM_ACTION)
+		if (pCurEntry->Type == MENU_ITEM_ACTION)
 		{
 			Menu_ActionCB cb = (Menu_ActionCB)pCurEntry->Action;
 			cb(MENU_ACTION_SET, pCurEntry->Value);
 		}
-		else if(pCurEntry->Type == MENU_ITEM_INT)
+		else if (pCurEntry->Type == MENU_ITEM_INT)
 		{
 			i8* data = (u8*)pCurEntry->Action;
 			*data++;
 		}
-		else if(pCurEntry->Type == MENU_ITEM_BOOL)
+		else if (pCurEntry->Type == MENU_ITEM_BOOL)
 		{
 			u8* data = (u8*)pCurEntry->Action;
 			*data = 1 - *data;
 		}
 		Menu_DisplayItem(g_MenuItem);
-		if(pCurEntry->Type == MENU_ITEM_GOTO)
+		if (pCurEntry->Type == MENU_ITEM_GOTO)
 		{
 			Menu_Initi(&g_Menus[pCurEntry->Value]);
 		}
@@ -1533,19 +1537,19 @@ void Menu_Update()
 	}
 
 	// Handle change value
-	if(Menu_PressRight())
+	if (Menu_PressRight())
 	{
-		if(pCurEntry->Type == MENU_ITEM_ACTION)
+		if (pCurEntry->Type == MENU_ITEM_ACTION)
 		{
 			Menu_ActionCB cb = (Menu_ActionCB)pCurEntry->Action;
 			cb(MENU_ACTION_INC, pCurEntry->Value);
 		}
-		else if(pCurEntry->Type == MENU_ITEM_INT)
+		else if (pCurEntry->Type == MENU_ITEM_INT)
 		{
 			i8* data = (u8*)pCurEntry->Action;
 			*data++;
 		}
-		else if(pCurEntry->Type == MENU_ITEM_BOOL)
+		else if (pCurEntry->Type == MENU_ITEM_BOOL)
 		{
 			u8* data = (u8*)pCurEntry->Action;
 			*data = 1 - *data;
@@ -1553,19 +1557,19 @@ void Menu_Update()
 		Menu_DisplayItem(g_MenuItem);
 		ayFX_PlayBank(14, 0);
 	}
-	else if(Menu_PressLeft())
+	else if (Menu_PressLeft())
 	{
-		if(pCurEntry->Type == MENU_ITEM_ACTION)
+		if (pCurEntry->Type == MENU_ITEM_ACTION)
 		{
 			Menu_ActionCB cb = (Menu_ActionCB)pCurEntry->Action;
 			cb(MENU_ACTION_DEC, pCurEntry->Value);
 		}
-		else if(pCurEntry->Type == MENU_ITEM_INT)
+		else if (pCurEntry->Type == MENU_ITEM_INT)
 		{
 			i8* data = (u8*)pCurEntry->Action;
 			*data--;
 		}
-		else if(pCurEntry->Type == MENU_ITEM_BOOL)
+		else if (pCurEntry->Type == MENU_ITEM_BOOL)
 		{
 			u8* data = (u8*)pCurEntry->Action;
 			*data = 1 - *data;
@@ -1575,13 +1579,13 @@ void Menu_Update()
 	}
 	
 	// Handle navigation
-	if(Menu_PressUp())
+	if (Menu_PressUp())
 	{
 		u8 i = g_MenuItem;
-		while(i > 0)
+		while (i > 0)
 		{
 			i--;
-			if(g_CurrentMenu->Items[i].Type < MENU_ITEM_EMPTY)
+			if (g_CurrentMenu->Items[i].Type < MENU_ITEM_EMPTY)
 			{
 				u8 prev = g_MenuItem;
 				g_MenuItem = i;
@@ -1591,13 +1595,13 @@ void Menu_Update()
 			}
 		}			
 	}
-	else if(Menu_PressDown())
+	else if (Menu_PressDown())
 	{
 		u8 i = g_MenuItem;
-		while(i < g_CurrentMenu->ItemNum-1)
+		while (i < g_CurrentMenu->ItemNum-1)
 		{
 			i++;
-			if(g_CurrentMenu->Items[i].Type < MENU_ITEM_EMPTY)
+			if (g_CurrentMenu->Items[i].Type < MENU_ITEM_EMPTY)
 			{
 				u8 prev = g_MenuItem;
 				g_MenuItem = i;
@@ -1609,13 +1613,13 @@ void Menu_Update()
 	}
 	
 	// Update menu items
-	if((g_GameFrame & 0x07) == 0) // 8th frame
+	if ((g_GameFrame & 0x07) == 0) // 8th frame
 	{
 		Print_SelectTextFont(g_DataFont, OFFSET_TITLE_FONT_DEF);
-		for(u8 item = 0; item < g_CurrentMenu->ItemNum; ++item)
+		for (u8 item = 0; item < g_CurrentMenu->ItemNum; ++item)
 		{
 			MenuItem* pCurEntry = &g_CurrentMenu->Items[item];
-			if(pCurEntry->Type == MENU_ITEM_UPDATE)
+			if (pCurEntry->Type == MENU_ITEM_UPDATE)
 			{
 				Menu_ActionCB cb = (Menu_ActionCB)pCurEntry->Action;
 				const c8* str = cb(MENU_ACTION_GET, pCurEntry->Value);
@@ -1650,7 +1654,7 @@ void LoadMatchData()
 	{
 		const u8* src = g_DataBall;
 		u16 dst = g_SpritePatternLow + (PATTERN_BALL_LINE1 * 8);
-		for(i8 i = 0; i < 5; ++i)
+		for (i8 i = 0; i < 5; ++i)
 		{
 			VDP_WriteVRAM_16K(src, dst, 8);
 			src += (1 * 8);
@@ -1662,7 +1666,7 @@ void LoadMatchData()
 	{
 		const u8* src = g_DataRacket;
 		u16 dst	= g_SpritePatternLow + (PATTERN_RACKET_R * 8) + 8;
-		for(u8 i = 0; i < 3; ++i)
+		for (u8 i = 0; i < 3; ++i)
 		{
 			VDP_WriteVRAM_16K(src, dst, 8);
 			src += 8;
@@ -1673,7 +1677,7 @@ void LoadMatchData()
 	// Generate cursor sprites
 	{
 		u16 dst = g_SpritePatternLow + (PATTERN_CURSOR1 * 8);
-		for(u8 i = 0; i < 8 * 2; ++i)
+		for (u8 i = 0; i < 8 * 2; ++i)
 		{
 			VDP_FillVRAM_16K(0x55, dst + 4 * 8, 1);
 			VDP_FillVRAM_16K(0xAA, dst++, 1);
@@ -1692,7 +1696,7 @@ void LoadMatchData()
 	{
 		const u8* src = g_DataBall + 6 * 8;
 		u16 dst = g_SpritePatternLow + (PATTERN_SERVER_BASE * 8);
-		for(u8 i = 0; i < 4; ++i)
+		for (u8 i = 0; i < 4; ++i)
 		{
 			VDP_WriteVRAM_16K(src, dst, 8);
 			src += 8;
@@ -1704,7 +1708,7 @@ void LoadMatchData()
 	{
 		const u8* src = g_DataCup;
 		u16 dst = g_SpritePatternLow + (PATTERN_CUP_OUTLINE1 * 8);
-		for(u8 i = 0; i < 6; ++i)
+		for (u8 i = 0; i < 6; ++i)
 		{
 			VDP_WriteVRAM_16K(src, dst, 8);
 			src += 8;
@@ -1725,13 +1729,13 @@ void LoadMatchData()
 void SetNetSprite(u8 x) __FASTCALL
 {
 	x /= 8;
-	for(u8 i = 0; i < 2; ++i)
+	for (u8 i = 0; i < 2; ++i)
 	{
-		if(g_CourtNet[x] == 0x80)
+		if (g_CourtNet[x] == 0x80)
 			x--;
-		if(g_CourtNet[x] != 0xFF)
+		if (g_CourtNet[x] != 0xFF)
 		{
-			if(g_CourtNet[x] == 0)
+			if (g_CourtNet[x] == 0)
 				VDP_SetSprite(SPRITE_NET_LEFT+i, x * 8, 79, PATTERN_NET1 + g_CourtNet[x] * 4);
 			else
 			{
@@ -1752,19 +1756,19 @@ void SetTrainingCursor()
 {
 	u16 rnd = Math_GetRandom16();
 
-	if(g_Level == LEVEL_EASY)
+	if (g_Level == LEVEL_EASY)
 		g_TrainZone.x = (rnd % (128-16)) + 56;
 	else
 		g_TrainZone.x = (rnd % 128) + 56;
 
-	if(g_Level == LEVEL_HARD)
+	if (g_Level == LEVEL_HARD)
 		g_TrainZone.y = ((rnd >> 8) % 40) + 32;
-	else if(g_Level == LEVEL_MEDIUM)
+	else if (g_Level == LEVEL_MEDIUM)
 		g_TrainZone.y = ((rnd >> 8) % (40-16)) + 32;
 	else
 		g_TrainZone.y = ((rnd >> 8) % (40-32)) + 40;
 
-	if(g_TrainSide == SIDE_TOP)
+	if (g_TrainSide == SIDE_TOP)
 		g_TrainZone.y += 72;
 
 	VDP_SetSpritePositionY(SPRITE_CURSOR_1, 213);
@@ -1772,7 +1776,7 @@ void SetTrainingCursor()
 	VDP_SetSpritePositionY(SPRITE_CURSOR_3, 213);
 	VDP_SetSpritePositionY(SPRITE_CURSOR_4, 213);
 
-	switch(g_Level)
+	switch (g_Level)
 	{
 	case LEVEL_EASY:
 		SetSprite(SPRITE_CURSOR_2, g_TrainZone.x + 16, g_TrainZone.y, PATTERN_CURSOR1, COLOR_DARK_BLUE);
@@ -1785,7 +1789,7 @@ void SetTrainingCursor()
 		SetSprite(SPRITE_CURSOR_1, g_TrainZone.x, g_TrainZone.y, PATTERN_CURSOR1, COLOR_DARK_BLUE);
 	}
 	
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 	{
 		VDP_SetSpritePositionY(SPRITE_NET_LEFT, 213);
 		VDP_SetSpritePositionY(SPRITE_NET_RIGHT, 213);
@@ -1818,7 +1822,7 @@ void Ball_ShootRandom()
 
 	// Direction
 	g_Ball.dir = g_TrainSide == SIDE_BOTTOM ? 48 : 16;
-	switch(g_TrainDir)
+	switch (g_TrainDir)
 	{
 	case DIR_RANDOM:
 		g_Ball.dir = rnd;
@@ -1831,7 +1835,7 @@ void Ball_ShootRandom()
 	}
 		
 	// Velocity
-	if(((g_TrainShot == TRAIN_FLAT)) || ((g_TrainShot == TRAIN_BOTH) && (rnd & BIT_8))) // top spine
+	if (((g_TrainShot == TRAIN_FLAT)) || ((g_TrainShot == TRAIN_BOTH) && (rnd & BIT_8))) // top spine
 	{
 		g_Ball.velXY = PX_TO_UNIT(3);
 		g_Ball.velZ = PX_TO_UNIT(3);
@@ -1860,7 +1864,7 @@ void Ball_SwitchSprites()
 {
 	// Flicker Shadows
 	u8 pat = PATTERN_BALL_LINE1;
-	if(g_FlickerShadow && (g_GameFrame & 0x1))
+	if (g_FlickerShadow && (g_GameFrame & 0x1))
 	{
 		pat += 4;
 	}
@@ -1872,18 +1876,18 @@ void Ball_SwitchSprites()
 bool Ball_CheckField()
 {
 	const Field* field;
-	if(g_Ball.lastPly == SIDE_BOTTOM)
+	if (g_Ball.lastPly == SIDE_BOTTOM)
 		field = &g_Field[SIDE_BOTTOM];
 	else
 		field = &g_Field[SIDE_TOP];
 
-	if(g_Ball.srcPos.x < field->min.x)
+	if (g_Ball.srcPos.x < field->min.x)
 		return FALSE;
-	if(g_Ball.srcPos.x > field->max.x)
+	if (g_Ball.srcPos.x > field->max.x)
 		return FALSE;
-	if(g_Ball.srcPos.y < field->min.y)
+	if (g_Ball.srcPos.y < field->min.y)
 		return FALSE;
-	if(g_Ball.srcPos.y > field->max.y)
+	if (g_Ball.srcPos.y > field->max.y)
 		return FALSE;
 
 	return TRUE;
@@ -1911,7 +1915,7 @@ void Ball_Update()
 {
 	//-------------------------------------------------------------------------
 	// Simulate ball physics
-	if(g_Ball.physics)
+	if (g_Ball.physics)
 	{
 		// Horizontal force
 		i16 dx = g_Ball.velXY * (i16)g_Cosinus64[g_Ball.dir];
@@ -1930,27 +1934,27 @@ void Ball_Update()
 		g_Ball.height += g_Ball.velZ;
 
 		// Bounce
-		if(g_Ball.height < 0)
+		if (g_Ball.height < 0)
 		{
 			g_Ball.height = 0;
 			g_Ball.bounce++;
 			g_Ball.velZ = -g_Ball.velZ * 2 / 3;
 
-			/*if(g_Ball.spin == SPIN_TOP)
+			/*if (g_Ball.spin == SPIN_TOP)
 			{
 			}
-			else*/ if(g_Ball.spin == SPIN_BACK)
+			else*/ if (g_Ball.spin == SPIN_BACK)
 			{
 				g_Ball.velXY = g_Ball.velXY / 2;
 			}
-			else if(g_Ball.spin == SPIN_FLAT)
+			else if (g_Ball.spin == SPIN_FLAT)
 			{
 				g_Ball.velXY = g_Ball.velXY * 2 / 3;
 			}
 
-			if(g_Ball.bounce == 1)
+			if (g_Ball.bounce == 1)
 			{
-				if(Ball_CheckField() && (g_Ball.point == POINT_PENDING))
+				if (Ball_CheckField() && (g_Ball.point == POINT_PENDING))
 				{
 					g_Ball.point = POINT_VALIDATED;
 					g_ScoreFct(EVENT_IN);
@@ -1962,26 +1966,26 @@ void Ball_Update()
 					ayFX_PlayBank(2, 0);
 				}
 			}
-			else if(g_Ball.bounce == 2)
+			else if (g_Ball.bounce == 2)
 			{
 				g_ScoreFct(EVENT_INOUT);
 				ayFX_PlayBank(12, 0);
 			}
 		}
 
-		if(g_Ball.coolDown > 0)
+		if (g_Ball.coolDown > 0)
 			g_Ball.coolDown--;
 
 		// Check out of screen
-		if((g_Ball.pos.y < 0) || (g_Ball.pos.y > PX_TO_UNIT(192)) || (g_Ball.pos.x < 0) || (g_Ball.pos.x > PX_TO_UNIT(256)))
+		if ((g_Ball.pos.y < 0) || (g_Ball.pos.y > PX_TO_UNIT(192)) || (g_Ball.pos.x < 0) || (g_Ball.pos.x > PX_TO_UNIT(256)))
 		{
 			Ball_Hide();
 			g_ScoreFct((g_Ball.point == POINT_PENDING) ? EVENT_OUT : EVENT_INOUT);
 		}
 		// Check net collision
-		else if(g_Ball.height < PX_TO_UNIT(14))
+		else if (g_Ball.height < PX_TO_UNIT(14))
 		{
-			if(((prevY < PX_TO_UNIT(96)) && (g_Ball.pos.y >= PX_TO_UNIT(96))) || (prevY > PX_TO_UNIT(96)) && (g_Ball.pos.y <= PX_TO_UNIT(96)))
+			if (((prevY < PX_TO_UNIT(96)) && (g_Ball.pos.y >= PX_TO_UNIT(96))) || (prevY > PX_TO_UNIT(96)) && (g_Ball.pos.y <= PX_TO_UNIT(96)))
 			{
 				g_Ball.velXY = 0;
 				g_Ball.velZ = 0;
@@ -1998,14 +2002,14 @@ void Ball_Update()
 	i16 y = g_Ball.srcPos.y - 3;
 
 	// Ball shadow
-	if((y >= 82) && (y < 96))
+	if ((y >= 82) && (y < 96))
 		VDP_SetSpritePositionY(SPRITE_BALL_SHADOW, 213);
 	else
 		VDP_SetSpritePosition(SPRITE_BALL_SHADOW,  x, y);
 
 	// Ball body
 	y -= UNIT_TO_PX(g_Ball.height);
-	if(y < 0)
+	if (y < 0)
 	{
 		VDP_SetSpritePositionY(SPRITE_BALL_OUTLINE, 213);
 		VDP_SetSpritePositionY(SPRITE_BALL_BODY,    213);
@@ -2042,7 +2046,7 @@ void ThrowService(Player* ply)
 // Print_DrawInt(g_ServeDY);
 
 	// Setup direction
-	switch(g_ServeZone)
+	switch (g_ServeZone)
 	{
 	case SERVE_BOT_R: g_Ball.dir = 16+7; break;
 	case SERVE_BOT_L: g_Ball.dir = 16-7; break;
@@ -2061,29 +2065,29 @@ void ThrowService(Player* ply)
 	// g_Ball.velXY += g_ServeDY + PX_TO_UNIT(0.1);
 	// g_Ball.velZ -= g_ServeDY + PX_TO_UNIT(0.1);
 
-	// if(g_ServeDY < 0)
+	// if (g_ServeDY < 0)
 	// {
 		// g_Ball.velXY = PX_TO_UNIT(3.3);
 		// g_Ball.velZ = PX_TO_UNIT(2.5);
 	// }
-	// else if(g_ServeDY > 0)
+	// else if (g_ServeDY > 0)
 	// {
 		// g_Ball.velXY = PX_TO_UNIT(3.3);
 		// g_Ball.velZ = PX_TO_UNIT(2.5);
 	// }
 
 
-	// if(g_ServeDY < -32)
+	// if (g_ServeDY < -32)
 		// g_Ball.velXY = PX_TO_UNIT(2.8);
-	// else if(g_ServeDY < -16)
+	// else if (g_ServeDY < -16)
 		// g_Ball.velXY = PX_TO_UNIT(3.0);
-	// else if(g_ServeDY < -8)
+	// else if (g_ServeDY < -8)
 		// g_Ball.velXY = PX_TO_UNIT(3.1);
-	// else if(g_ServeDY > 8)
+	// else if (g_ServeDY > 8)
 		// g_Ball.velXY = PX_TO_UNIT(3.8);
-	// else if(g_ServeDY > 16)
+	// else if (g_ServeDY > 16)
 		// g_Ball.velXY = PX_TO_UNIT(4.6);
-	// else if(g_ServeDY > 32)
+	// else if (g_ServeDY > 32)
 		// g_Ball.velXY = PX_TO_UNIT(5.5);
 
 	// Misc
@@ -2100,21 +2104,21 @@ void ThrowService(Player* ply)
 ///
 void Player_CheckShoot(Player* ply)
 {
-	if(g_Ball.coolDown > 0)
+	if (g_Ball.coolDown > 0)
 		return;
 		
 	u8 event = g_Actions[ply->action].animFrames[ply->step].event;
 
 	// Check Z coordinate
-	if(event == FUNCT_SMASH)
+	if (event == FUNCT_SMASH)
 	{
-		if(g_Ball.height > PX_TO_UNIT(40))
+		if (g_Ball.height > PX_TO_UNIT(40))
 			return;
 	}	
 	
 	// Check X coordinate
 	u8 minX, maxX;
-	switch(event)
+	switch (event)
 	{
 	case FUNCT_SHOOT_R:
 		minX = UNIT_TO_PX(ply->pos.x);
@@ -2133,7 +2137,7 @@ void Player_CheckShoot(Player* ply)
 	};
 	
 	u8 ballX = g_Ball.srcPos.x;
-	if((ballX < minX) || (ballX > maxX))
+	if ((ballX < minX) || (ballX > maxX))
 		return;
 
 	// Check Y coordinate
@@ -2141,7 +2145,7 @@ void Player_CheckShoot(Player* ply)
 	u8 maxY = ply->srcPos.y + SHOT_DETECT_Y;
 	
 	u8 ballY = g_Ball.srcPos.y;
-	if((ballY < minY) || (ballY > maxY))
+	if ((ballY < minY) || (ballY > maxY))
 		return;
 		
 	// Shoot Succed !!!
@@ -2151,52 +2155,52 @@ void Player_CheckShoot(Player* ply)
 	// Handle shot direction
 	ply->shotCnt = ply->counter;
 	//ply->shotCnt -= 4;
-	// if(ply->shotCnt > 6)
+	// if (ply->shotCnt > 6)
 		// ply->shotCnt = 6;
 
 	const Binding* bind = ply->binding;
 	u8 dir = 16;
 
 	// Set shot direction
-	if(ply->side == SIDE_BOTTOM)
+	if (ply->side == SIDE_BOTTOM)
 	{
-		if(event == FUNCT_SHOOT_R)
+		if (event == FUNCT_SHOOT_R)
 			dir += 2;
-		else if(event == FUNCT_SHOOT_L)
+		else if (event == FUNCT_SHOOT_L)
 			dir -= 2;
 
-		if(bind->inHoldLeft())
+		if (bind->inHoldLeft())
 			dir += ply->shotCnt;
-		else if(bind->inHoldRight())
+		else if (bind->inHoldRight())
 			dir -= ply->shotCnt;
 	}
-	else // if(ply->side == SIDE_TOP)
+	else // if (ply->side == SIDE_TOP)
 	{
 		dir += 32;
 	
-		if(event == FUNCT_SHOOT_R)
+		if (event == FUNCT_SHOOT_R)
 			dir -= 2;
-		else if(event == FUNCT_SHOOT_L)
+		else if (event == FUNCT_SHOOT_L)
 			dir += 2;
 
-		if(bind->inHoldLeft())
+		if (bind->inHoldLeft())
 			dir -= ply->shotCnt;
-		else if(bind->inHoldRight())
+		else if (bind->inHoldRight())
 			dir += ply->shotCnt;			
 	}
 	g_Ball.dir = dir;
 	
 	// Set shot strength
 	u8 shotId = ply->shot * 4; // Long shot
-	if(event == FUNCT_SMASH)
+	if (event == FUNCT_SMASH)
 	{
 		shotId += 3;
 	}
-	else if(ply->inShort()) // Short shot
+	else if (ply->inShort()) // Short shot
 	{
 		shotId += 2;
 	}
-	else if(!ply->inLong()) // Med shot
+	else if (!ply->inLong()) // Med shot
 	{
 		shotId++;
 	}
@@ -2226,7 +2230,7 @@ void SetSprite(u8 index, u8 x, u8 y, u8 shape, u8 color)
 {
 	// Initialize sprite attributes
 	#if (MSX2_ENHANCE)
-		if(g_VersionVDP == VDP_VERSION_TMS9918A)
+		if (g_VersionVDP == VDP_VERSION_TMS9918A)
 			VDP_SetSpriteSM1(index, x, y, shape, color);
 		else
 			VDP_SetSpriteExUniColor(index, x, y, shape, color);
@@ -2240,7 +2244,7 @@ void SetSprite(u8 index, u8 x, u8 y, u8 shape, u8 color)
 ///
 void SetAction(Player* ply, u8 id)
 {
-	if(ply->action != id)
+	if (ply->action != id)
 	{
 		ply->action = id;
 		ply->counter = 0;
@@ -2255,16 +2259,16 @@ void Player_UpdateAction(Player* ply) __FASTCALL
 	const Action* act = &g_Actions[ply->action];
 
 	// Finished current animation step
-	if(ply->counter >= act->animFrames[ply->step].len)
+	if (ply->counter >= act->animFrames[ply->step].len)
 	{
 		ply->counter = 0;
 		ply->step++;
 	}
 
 	// Finished last animation step
-	if(ply->step >= act->animLen)
+	if (ply->step >= act->animLen)
 	{
-		if(act->loop) // restart action
+		if (act->loop) // restart action
 		{
 			ply->counter = 0;
 			ply->step = 0;
@@ -2283,18 +2287,18 @@ void Player_UpdateAction(Player* ply) __FASTCALL
 
 	// Handle current action's event
 	const Binding* bind = ply->binding;
-	switch(act->animFrames[ply->step].event)
+	switch (act->animFrames[ply->step].event)
 	{
 	case FUNCT_THROW:
-		if(bind->inHoldRight())
+		if (bind->inHoldRight())
 			g_ServeDX++;
-		else if(bind->inHoldLeft())
+		else if (bind->inHoldLeft())
 			g_ServeDX--;			
-		if(ply->inLong())
+		if (ply->inLong())
 			g_ServeDY++;
-		else if(ply->inShort())
+		else if (ply->inShort())
 			g_ServeDY--;
-		if(bind->inButton1() || bind->inButton2())
+		if (bind->inButton1() || bind->inButton2())
 		{
 			SetAction(ply, ACTION_SERVE);
 			ThrowService(ply);
@@ -2306,9 +2310,9 @@ void Player_UpdateAction(Player* ply) __FASTCALL
 	case FUNCT_SHOOT_R:
 	case FUNCT_SHOOT_L:
 	case FUNCT_SMASH:
-		if(bind->inButton1() && (ply->shot == SHOT_SLICE))
+		if (bind->inButton1() && (ply->shot == SHOT_SLICE))
 			ply->shot = SHOT_ATTACK;
-		if(bind->inButton2() && (ply->shot == SHOT_FLAT))
+		if (bind->inButton2() && (ply->shot == SHOT_FLAT))
 			ply->shot = SHOT_ATTACK;
 		break;
 
@@ -2326,9 +2330,9 @@ void Player_UpdateAction(Player* ply) __FASTCALL
 void Player_HandleService(Player* ply) __FASTCALL
 {
 	const Binding* bind = ply->binding;
-	if(g_Actions[ply->action].interrupt)
+	if (g_Actions[ply->action].interrupt)
 	{
-		if(bind->inButton1() || bind->inButton2())
+		if (bind->inButton1() || bind->inButton2())
 		{
 			g_ServeDX = 0;
 			g_ServeDY = 0;
@@ -2337,18 +2341,18 @@ void Player_HandleService(Player* ply) __FASTCALL
 		else
 		{
 			u8 dir = 4;
-			if(bind->inHoldLeft())
+			if (bind->inHoldLeft())
 				dir -= 3;
-			else if(bind->inHoldRight())
+			else if (bind->inHoldRight())
 				dir += 3;	
 				
-			if(dir == 4) // No move
+			if (dir == 4) // No move
 			{
 				SetAction(ply, ACTION_IDLE);
 			}
 			else
 			{
-				if(dir > 3)
+				if (dir > 3)
 					dir--;
 
 				// Update player position
@@ -2357,16 +2361,16 @@ void Player_HandleService(Player* ply) __FASTCALL
 				const ServeInfo* info = &g_ServeInfo[g_ServeZone];
 
 				// Validate new X position
-				if(ply->pos.x < info->minX)
+				if (ply->pos.x < info->minX)
 					ply->pos.x = info->minX;
-				else if(ply->pos.x > info->maxX)
+				else if (ply->pos.x > info->maxX)
 					ply->pos.x = info->maxX;
 				
 				// Precompute screen position
 				ply->srcPos.x = UNIT_TO_PX(ply->pos.x);
 				
 				// Set movement action
-				if(dir < 3) // Left move
+				if (dir < 3) // Left move
 					SetAction(ply, ACTION_WALK_L);
 				else // Right move
 					SetAction(ply, ACTION_WALK_R);				
@@ -2381,51 +2385,51 @@ void Player_HandleService(Player* ply) __FASTCALL
 void Player_HandleInput(Player* ply) __FASTCALL
 {
 	const Binding* bind = ply->binding;
-	if(g_Actions[ply->action].interrupt)
+	if (g_Actions[ply->action].interrupt)
 	{
-		if(bind->inButton1() || bind->inButton2()) // Button triggered
+		if (bind->inButton1() || bind->inButton2()) // Button triggered
 		{
-			if(g_Ball.height > PX_TO_UNIT(32))
+			if (g_Ball.height > PX_TO_UNIT(32))
 				SetAction(ply, ACTION_SMASH);
 			else
 			{
 				// Project the movement vector of the ball on the horizontal line of the player (to know if it will arrive on his right or on his left) 
 				i16 dY;
-				if(ply->side == SIDE_BOTTOM)
+				if (ply->side == SIDE_BOTTOM)
 					dY = ply->srcPos.y - g_Ball.srcPos.y;
-				else // if(ply->side == SIDE_TOP)
+				else // if (ply->side == SIDE_TOP)
 					dY = g_Ball.srcPos.y - ply->srcPos.y;
 				i16 dX = dY * (i16)g_Cosinus64[g_Ball.dir]; // Q16.0 x Q2.6 => Q10.6
 				dX /= 64; // Q10.6  => Q16.0
-				if((g_Ball.srcPos.x + dX) > ply->srcPos.x)
+				if ((g_Ball.srcPos.x + dX) > ply->srcPos.x)
 					SetAction(ply, ACTION_SHOOT_R);
 				else
 					SetAction(ply, ACTION_SHOOT_L);
 			}
-			if(bind->inButton1())
+			if (bind->inButton1())
 				ply->shot = SHOT_FLAT;
-			else // if(bind->inButton2())
+			else // if (bind->inButton2())
 				ply->shot = SHOT_SLICE;
 		}
 		else
 		{
 			u8 dir = 4;
-			if(bind->inHoldUp())
+			if (bind->inHoldUp())
 				dir--;
-			else if(bind->inHoldDown())
+			else if (bind->inHoldDown())
 				dir++;
-			if(bind->inHoldLeft())
+			if (bind->inHoldLeft())
 				dir -= 3;
-			else if(bind->inHoldRight())
+			else if (bind->inHoldRight())
 				dir += 3;	
 				
-			if(dir == 4) // No move
+			if (dir == 4) // No move
 			{
 				SetAction(ply, ACTION_IDLE);
 			}
 			else
 			{
-				if(dir > 3)
+				if (dir > 3)
 					dir--;
 
 				// Update player position
@@ -2433,24 +2437,24 @@ void Player_HandleInput(Player* ply) __FASTCALL
 				ply->pos.y += g_Move[dir].y;
 				
 				// Validate new X position
-				if(ply->pos.x < PLY_MIN_X)
+				if (ply->pos.x < PLY_MIN_X)
 					ply->pos.x = PLY_MIN_X;
-				else if(ply->pos.x > PLY_MAX_X)
+				else if (ply->pos.x > PLY_MAX_X)
 					ply->pos.x = PLY_MAX_X;
 				
 				// Validate new Y position
-				if(ply->side == SIDE_BOTTOM)
+				if (ply->side == SIDE_BOTTOM)
 				{
-					if(ply->pos.y < PLY_DOWN_MIN_X)
+					if (ply->pos.y < PLY_DOWN_MIN_X)
 						ply->pos.y = PLY_DOWN_MIN_X;
-					else if(ply->pos.y > PLY_DOWN_MAX_X)
+					else if (ply->pos.y > PLY_DOWN_MAX_X)
 						ply->pos.y = PLY_DOWN_MAX_X;
 				}
 				else
 				{
-					if(ply->pos.y < PLY_UP_MIN_X)
+					if (ply->pos.y < PLY_UP_MIN_X)
 						ply->pos.y = PLY_UP_MIN_X;
-					else if(ply->pos.y > PLY_UP_MAX_X)
+					else if (ply->pos.y > PLY_UP_MAX_X)
 						ply->pos.y = PLY_UP_MAX_X;
 				}
 
@@ -2459,9 +2463,9 @@ void Player_HandleInput(Player* ply) __FASTCALL
 				ply->srcPos.y = UNIT_TO_PX(ply->pos.y);
 				
 				// Set movement action
-				if((dir == 3) || (dir == 4)) // Front move
+				if ((dir == 3) || (dir == 4)) // Front move
 					SetAction(ply, ACTION_WALK_F);
-				else if(dir < 3) // Left move
+				else if (dir < 3) // Left move
 					SetAction(ply, ACTION_WALK_L);
 				else // Right move
 					SetAction(ply, ACTION_WALK_R);				
@@ -2489,7 +2493,7 @@ void UpdatePlayerBottom()
 
 	// Handle special event
 	u8 event = g_Actions[g_Player[SIDE_BOTTOM].action].animFrames[g_Player[SIDE_BOTTOM].step].event;
-	switch(event)
+	switch (event)
 	{
 	case FUNCT_SHOOT_R:
 		Player_CheckShoot(&g_Player[SIDE_BOTTOM]);
@@ -2515,7 +2519,7 @@ void UpdatePlayerBottom()
 void DrawPlayerBottom()
 {
 	u8 frame = g_Player[SIDE_BOTTOM].anim;
-	if(g_Player[SIDE_BOTTOM].prevAnim == frame)
+	if (g_Player[SIDE_BOTTOM].prevAnim == frame)
 		return;
 
 	g_Player[SIDE_BOTTOM].prevAnim = frame;
@@ -2562,11 +2566,11 @@ void Player_SwitchSprites(Player* ply) __FASTCALL
 {
 	// Flicker Shadows
 	u8 pat = 0;
-	if(g_FlickerShadow && (g_GameFrame & 0x1))
+	if (g_FlickerShadow && (g_GameFrame & 0x1))
 	{
 		pat += 4;
 	}
-	if(ply->side == SIDE_BOTTOM)
+	if (ply->side == SIDE_BOTTOM)
 	{
 		VDP_SetSpritePattern(SPRITE_PLY_BOT_BLACK_H, pat + PATTERN_PLY_BOT_LINE1_H);      // Pattern #0  / #4
 		VDP_SetSpritePattern(SPRITE_PLY_BOT_BLACK_L, pat + PATTERN_PLY_BOT_LINE1_H + 20); // Pattern #20 / #24
@@ -2597,7 +2601,7 @@ void UpdatePlayerTop()
 
 	// Handle special event
 	u8 event = g_Actions[g_Player[SIDE_TOP].action].animFrames[g_Player[SIDE_TOP].step].event;
-	switch(event)
+	switch (event)
 	{
 	case FUNCT_SHOOT_R:
 		Player_CheckShoot(&g_Player[SIDE_TOP]);
@@ -2618,12 +2622,12 @@ void UpdatePlayerTop()
 	};
 	
 	// Handle net
-	if(g_DisplayNet)
+	if (g_DisplayNet)
 	{
 		VDP_SetSpritePositionY(SPRITE_NET_LEFT, 213);
 		VDP_SetSpritePositionY(SPRITE_NET_RIGHT, 213);
 		VDP_SetSpritePositionY(SPRITE_NET_GRAY, 213);
-		if(g_Player[SIDE_TOP].srcPos.y >= 80)
+		if (g_Player[SIDE_TOP].srcPos.y >= 80)
 			SetNetSprite(x);
 	}
 }
@@ -2633,7 +2637,7 @@ void UpdatePlayerTop()
 void DrawPlayerTop() __FASTCALL
 {
 	u8 frame = g_Player[SIDE_TOP].anim;
-	if(g_Player[SIDE_TOP].prevAnim == frame)
+	if (g_Player[SIDE_TOP].prevAnim == frame)
 		return;
 
 	g_Player[SIDE_TOP].prevAnim = frame;
@@ -2680,11 +2684,11 @@ void Launcher_SwitchSprites()
 {
 	// Flicker Shadows
 	u8 pat = g_TrainSideData[g_TrainSide].pattern;
-	if(g_FlickerShadow && (g_GameFrame & 0x1))
+	if (g_FlickerShadow && (g_GameFrame & 0x1))
 	{
 		pat += 8;
 	}
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 	{
 		VDP_SetSpritePattern(SPRITE_LAUNCHER_TOP_1, pat);     // Pattern #40 / #48
 		VDP_SetSpritePattern(SPRITE_LAUNCHER_TOP_2, pat + 4); // Pattern #44 / #52
@@ -2700,18 +2704,18 @@ void Launcher_SwitchSprites()
 ///
 void UnpackGM2ToVRAM(const u8* src, u16 dst)
 {
-	while(*src != 0)
+	while (*src != 0)
 	{
 		u8 type = *src >> 6;
 		u8 len = *src & 0x3F;
 		src++;
-		if(type == 0) // Chunk of zeros
+		if (type == 0) // Chunk of zeros
 		{
 			VDP_FillVRAM_16K(0x00, dst + 0x0000, len);
 			VDP_FillVRAM_16K(0x00, dst + 0x0800, len);
 			VDP_FillVRAM_16K(0x00, dst + 0x1000, len);
 		}
-		else if(type == 1) // Chunk of same byte
+		else if (type == 1) // Chunk of same byte
 		{
 			VDP_FillVRAM_16K(*src, dst + 0x0000, len);
 			VDP_FillVRAM_16K(*src, dst + 0x0800, len);
@@ -2733,16 +2737,16 @@ void UnpackGM2ToVRAM(const u8* src, u16 dst)
 ///
 void UnpackSpriteToVRAM(const u8* src, u16 dst)
 {
-	while(*src != 0)
+	while (*src != 0)
 	{
 		u8 type = *src >> 6;
 		u8 len = *src & 0x3F;
 		src++;
-		if(type == 0) // Chunk of zeros
+		if (type == 0) // Chunk of zeros
 		{
 			VDP_FillVRAM_16K(0x00, dst, len);
 		}
-		else if(type == 1) // Chunk of same byte
+		else if (type == 1) // Chunk of same byte
 		{
 			VDP_FillVRAM_16K(*src, dst, len);
 			src++;
@@ -2761,18 +2765,18 @@ void UnpackSpriteToVRAM(const u8* src, u16 dst)
 #if (COMPRESS_NAMES)
 void UnpackRLEpToRAM(const u8* src, u8* dst)
 {
-	while(*src != 0)
+	while (*src != 0)
 	{
 		u8 type = *src >> 6;
 		u8 len = *src & 0x3F;
 		src++;
-		if(type == 0) // Chunk of zeros
+		if (type == 0) // Chunk of zeros
 		{
 			Mem_Set(0x00, dst + 0x0000, len);
 			Mem_Set(0x00, dst + 0x0800, len);
 			Mem_Set(0x00, dst + 0x1000, len);
 		}
-		else if(type == 1) // Chunk of same byte
+		else if (type == 1) // Chunk of same byte
 		{
 			Mem_Set(*src, dst + 0x0000, len);
 			Mem_Set(*src, dst + 0x0800, len);
@@ -2844,7 +2848,7 @@ void InitializeCourt()
 void Player_Initialize(u8 side, u8 controller)
 {
 	// Setup player sprites
-	if(side == SIDE_BOTTOM)
+	if (side == SIDE_BOTTOM)
 	{
 		SetSprite(SPRITE_PLY_BOT_BLACK_H, 0, 213, PATTERN_PLY_BOT_LINE1_H, COLOR_BLACK);		// Outline
 		SetSprite(SPRITE_PLY_BOT_BLACK_L, 0, 213, PATTERN_PLY_BOT_LINE1_L, COLOR_BLACK);		// Outline
@@ -2855,7 +2859,7 @@ void Player_Initialize(u8 side, u8 controller)
 		SetSprite(SPRITE_PLY_BOT_SKIN_L,  0, 213, PATTERN_PLY_BOT_SKIN_L,  COLOR_LIGHT_RED);	// Skin
 		SetSprite(SPRITE_PLY_BOT_RACKET,  0, 213, PATTERN_RACKET_R,        COLOR_BLACK);		// Racket
 	}
-	else // if(side == SIDE_TOP)
+	else // if (side == SIDE_TOP)
 	{
 		SetSprite(SPRITE_PLY_TOP_BLACK_H, 0, 213, PATTERN_PLY_TOP_LINE1_H, COLOR_BLACK);			// Outline
 		SetSprite(SPRITE_PLY_TOP_BLACK_L, 0, 213, PATTERN_PLY_TOP_LINE1_L, COLOR_BLACK);			// Outline
@@ -2878,19 +2882,19 @@ void Player_Initialize(u8 side, u8 controller)
 	ply->step = 0;
 	ply->binding = &g_Binding[g_InputBinding[controller]];
 	const Binding* bind = ply->binding;
-	if(side == SIDE_BOTTOM)
+	if (side == SIDE_BOTTOM)
 	{
 		ply->inLong  = bind->inHoldUp;
 		ply->inShort = bind->inHoldDown;
 	}
-	else // if(side == SIDE_TOP)
+	else // if (side == SIDE_TOP)
 	{
 		ply->inLong  = bind->inHoldDown;
 		ply->inShort = bind->inHoldUp;
 	}
 	
 	u8 zone = g_ServeZone;
-	if(side != g_Server)
+	if (side != g_Server)
 	{
 		zone += 2;
 		zone %= 4;
@@ -2906,7 +2910,7 @@ void Player_Initialize(u8 side, u8 controller)
 ///
 void Launcher_Initialize()
 {
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 	{
 		// Load launcher pattern
 		u16 dst;
@@ -2923,7 +2927,7 @@ void Launcher_Initialize()
 		VDP_SetSpritePositionY(SPRITE_LAUNCHER_TOP_7, 213);
 		VDP_SetSpritePositionY(SPRITE_LAUNCHER_TOP_8, 213);
 	}
-	else // if(g_TrainSide == SIDE_TOP)
+	else // if (g_TrainSide == SIDE_TOP)
 	{
 		// Load launcher pattern
 		u16 dst;
@@ -2960,12 +2964,12 @@ void DisplayTrainingScore()
 	Print_SelectTextFont(g_DataSrcFont, OFFSET_GAME_SCRFONT);
 
 	Print_SetPosition(1, y);
-	if(g_TrainScore < 10)
+	if (g_TrainScore < 10)
 		Print_DrawChar('0');
 	Print_DrawInt(g_TrainScore);
 
 	Print_SetPosition(29, y);
-	if(g_TrainBest[g_Level] < 10)
+	if (g_TrainBest[g_Level] < 10)
 		Print_DrawChar('0');
 	Print_DrawInt(g_TrainBest[g_Level]);
 }
@@ -2974,19 +2978,19 @@ void DisplayTrainingScore()
 ///
 void TrainingScore(u8 subEvent)
 {
-	if(g_Ball.point == POINT_FINISHED)
+	if (g_Ball.point == POINT_FINISHED)
 		return;
 
-	if((subEvent == EVENT_IN) && (g_Ball.lastPly != g_TrainSide))
+	if ((subEvent == EVENT_IN) && (g_Ball.lastPly != g_TrainSide))
 		return;
 
-	if((subEvent == EVENT_IN) && (g_Ball.point == POINT_VALIDATED) && (g_Ball.lastPly == g_TrainSide))
+	if ((subEvent == EVENT_IN) && (g_Ball.point == POINT_VALIDATED) && (g_Ball.lastPly == g_TrainSide))
 	{
-		if(((u8)(g_Ball.srcPos.x - g_TrainZone.x) <= g_TrainSize[g_Level].x) && ((u8)(g_Ball.srcPos.y - g_TrainZone.y) <= g_TrainSize[g_Level].y))
+		if (((u8)(g_Ball.srcPos.x - g_TrainZone.x) <= g_TrainSize[g_Level].x) && ((u8)(g_Ball.srcPos.y - g_TrainZone.y) <= g_TrainSize[g_Level].y))
 		{
-			if(g_TrainScore < 99)
+			if (g_TrainScore < 99)
 				g_TrainScore++;
-			if(g_TrainScore > g_TrainBest[g_Level])
+			if (g_TrainScore > g_TrainBest[g_Level])
 				g_TrainBest[g_Level] = g_TrainScore;
 			SetTrainingCursor();
 			DisplayTrainingScore();
@@ -2994,7 +2998,7 @@ void TrainingScore(u8 subEvent)
 		else
 			return;
 	}
-	else if(((g_Ball.point == POINT_PENDING) && (g_Ball.lastPly == g_TrainSide))
+	else if (((g_Ball.point == POINT_PENDING) && (g_Ball.lastPly == g_TrainSide))
 		|| ((g_Ball.point == POINT_VALIDATED) && (g_Ball.lastPly != g_TrainSide)))
 	{
 		g_TrainScore = 0;
@@ -3016,7 +3020,7 @@ void DisplayScore()
 	//-------------------------------------------------------------------------
 	// SCORE BOARD
 	u8 y = SCORE_TXT_Y;
-	for(i8 p = 1; p >= 0; --p)
+	for (i8 p = 1; p >= 0; --p)
 	{
 		// Current game
 		Print_SetPosition(26, y);
@@ -3035,9 +3039,9 @@ void DisplayScore()
 		Print_DrawInt(g_Sets[p]);
 
 		// Previous sets
-		if(g_CurSet > 0)
+		if (g_CurSet > 0)
 		{
-			for(u8 i = 0; i < g_CurSet; ++i)
+			for (u8 i = 0; i < g_CurSet; ++i)
 			{
 				Print_SetPosition(5 + (i * 2), y);
 				Print_DrawInt(g_Games[i][p]);
@@ -3052,7 +3056,7 @@ void DisplayScore()
 	// STATISTICS
 
 	u8 x = 23;
-	for(u8 q = 0; q < 2; ++q)
+	for (u8 q = 0; q < 2; ++q)
 	{
 		// Player name
 		Print_SetPosition(x, 12);
@@ -3060,7 +3064,7 @@ void DisplayScore()
 		
 		// Points
 		u8 v = g_TotalPoints[q];
-		if(v > 99)
+		if (v > 99)
 			v = 99;
 		Print_SetPosition((v < 10) ? x + 1 : x, 14);
 		Print_DrawInt(v);
@@ -3087,9 +3091,9 @@ bool Event_WinPoint()
 {
 	g_EventFrame++;
 
-	if(g_EventFrame == 1)
+	if (g_EventFrame == 1)
 	{
-		if(g_EventSub != EVENT_INOUT)
+		if (g_EventSub != EVENT_INOUT)
 		{
 			// Display Referee Image
 			Ball_Hide();
@@ -3113,13 +3117,13 @@ bool Event_WinPoint()
 			g_EventFrame += EVENT_DELAY / 2;
 		}
 	}
-	if(g_EventFrame < EVENT_DELAY)
+	if (g_EventFrame < EVENT_DELAY)
 	{
 		return TRUE;
 	}
 	
 	// Display Score
-	if(g_EventFrame == EVENT_DELAY)
+	if (g_EventFrame == EVENT_DELAY)
 	{
 		// Draw Court
 		VDP_FillScreen_GM2(0);
@@ -3144,7 +3148,7 @@ bool Event_WinPoint()
 		InitService();
 		Ball_Hide();
 	}
-	if(g_EventFrame < EVENT_DELAY+16)
+	if (g_EventFrame < EVENT_DELAY+16)
 	{
 		u8 x = ((g_EventFrame - EVENT_DELAY) * 8);
 		VDP_SetSpritePosition(SPRITE_SCORE_1, SCORE_TOP_X   + x, SCORE_TOP_Y);
@@ -3152,11 +3156,11 @@ bool Event_WinPoint()
 		VDP_SetSpritePosition(SPRITE_SCORE_3, SCORE_BOT_X   - x, SCORE_BOT_Y);
 		VDP_SetSpritePosition(SPRITE_SCORE_4, SCORE_BOT_X+1 - x, SCORE_BOT_Y+1);
 	}
-	if(g_EventFrame == EVENT_DELAY+16)
+	if (g_EventFrame == EVENT_DELAY+16)
 	{
 		ayFX_PlayBank(13, 0);
 	}
-	if(g_EventFrame == EVENT_DELAY+50)
+	if (g_EventFrame == EVENT_DELAY+50)
 	{
 		// Hide score sprites
 		VDP_HideSpriteFrom(SPRITE_SCORE_1);
@@ -3170,7 +3174,7 @@ bool Event_WinPoint()
 ///
 bool Event_Default(u8 event)
 {
-	if(g_EventFrame == 0)
+	if (g_EventFrame == 0)
 	{
 		// Text
 		{
@@ -3198,7 +3202,7 @@ bool Event_Default(u8 event)
 		InitService();
 		Ball_Hide();
 	}
-	if(g_EventFrame < 16)
+	if (g_EventFrame < 16)
 	{
 		VDP_SetSpritePosition(SPRITE_SCORE_1, EVENT_TOP_X    + (g_EventFrame * 8), EVENT_TOP_Y);
 		VDP_SetSpritePosition(SPRITE_SCORE_2, EVENT_TOP_X+16 + (g_EventFrame * 8), EVENT_TOP_Y);
@@ -3208,18 +3212,18 @@ bool Event_Default(u8 event)
 		VDP_SetSpritePosition(SPRITE_SCORE_5, EVENT_BOT_X   - (g_EventFrame * 8), EVENT_BOT_Y);
 		VDP_SetSpritePosition(SPRITE_SCORE_6, EVENT_BOT_X+1 - (g_EventFrame * 8), EVENT_BOT_Y+1);
 	}
-	if(g_EventFrame == 16)
+	if (g_EventFrame == 16)
 	{
 		ayFX_PlayBank(13, 0);
 	}
-	if(g_EventFrame == 50)
+	if (g_EventFrame == 50)
 	{
 		// Hide score sprites
 		VDP_HideSpriteFrom(SPRITE_SCORE_1);
 		g_EventID = EVENT_NONE;
-		if(event == EVENT_SET)
+		if (event == EVENT_SET)
 			Game_SetState(State_ScoreStart);
-		else if(event == EVENT_MATCH)
+		else if (event == EVENT_MATCH)
 			Game_SetState(State_VictoryStart);
 	}
 	g_EventFrame++;
@@ -3231,7 +3235,7 @@ bool Event_Default(u8 event)
 ///
 bool HandleEvent()
 {
-	switch(g_EventID)
+	switch (g_EventID)
 	{
 	case EVENT_POINT:
 		return Event_WinPoint();
@@ -3260,13 +3264,13 @@ void InitNewGame()
 ///
 void MatchScore(u8 subEvent)
 {
-	if((g_Ball.point == POINT_FINISHED) || (subEvent == EVENT_IN))
+	if ((g_Ball.point == POINT_FINISHED) || (subEvent == EVENT_IN))
 		return;
 
 	u8 event = EVENT_POINT;
 		
 	// Win the point
-	if(g_Ball.point == POINT_VALIDATED)
+	if (g_Ball.point == POINT_VALIDATED)
 	{
 		g_Winner = g_Ball.lastPly;
 		g_Points[g_Ball.lastPly]++;
@@ -3280,7 +3284,7 @@ void MatchScore(u8 subEvent)
 	}
 
 	// Deuce
-	if((g_Points[0] == SCORE_ADV) && (g_Points[1] == SCORE_ADV))
+	if ((g_Points[0] == SCORE_ADV) && (g_Points[1] == SCORE_ADV))
 	{
 		g_Points[0] = SCORE_40;
 		g_Points[1] = SCORE_40;
@@ -3288,10 +3292,10 @@ void MatchScore(u8 subEvent)
 
 	g_OddPoint = (g_Points[0] + g_Points[1]) & 0x1;
 		
-	for(u8 i = 0; i < 2; ++i)
+	for (u8 i = 0; i < 2; ++i)
 	{
 		// Win the current game
-		if((g_Points[i] == SCORE_WIN) || ((g_Points[i] == SCORE_ADV) && (g_Points[1-i] < SCORE_40)))
+		if ((g_Points[i] == SCORE_WIN) || ((g_Points[i] == SCORE_ADV) && (g_Points[1-i] < SCORE_40)))
 		{
 			g_Winner = i;
 			g_Games[g_CurSet][i]++;
@@ -3300,7 +3304,7 @@ void MatchScore(u8 subEvent)
 		}
 		
 		// Win the current set
-		if(((g_Games[g_CurSet][i] == 6) && (g_Games[g_CurSet][1-i] < 5))
+		if (((g_Games[g_CurSet][i] == 6) && (g_Games[g_CurSet][1-i] < 5))
 		|| ((g_Games[g_CurSet][i] > 6) && (g_Games[g_CurSet][i] > g_Games[g_CurSet][1-i] + 1)))
 		{
 			g_Winner = i;
@@ -3311,7 +3315,7 @@ void MatchScore(u8 subEvent)
 		}
 
 		// Win the match!
-		if(g_Sets[i] >= g_OptionSets + 1)
+		if (g_Sets[i] >= g_OptionSets + 1)
 		{
 			g_Winner = i;
 			event = EVENT_MATCH;
@@ -3320,7 +3324,7 @@ void MatchScore(u8 subEvent)
 	}
 	
 	#if (DEBUG)
-		if(g_Debug)
+		if (g_Debug)
 			DisplayScore();
 	#endif
 	
@@ -3342,7 +3346,7 @@ void MatchScore(u8 subEvent)
 void UpdateInput()
 {
 	// Keyboard
-	for(u8 i = 0; i < 9; ++i)
+	for (u8 i = 0; i < 9; ++i)
 	{
 		g_PrevRow[i] = g_KeyRow[i];	
 		g_KeyRow[i] = Keyboard_Read(i);
@@ -3520,16 +3524,16 @@ void MoveLogoBall(u8 x) __FASTCALL
 ///
 bool State_TitleUpdate()
 {
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	UpdateInput();
 
-	if(g_EventFrame < 25) // Ball movement
+	if (g_EventFrame < 25) // Ball movement
 	{
 		MoveLogoBall(g_EventFrame * 8);
 	}
-	else if(g_EventFrame == 25) // White flash
+	else if (g_EventFrame == 25) // White flash
 	{	
 		ayFX_PlayBank(13, 0);
 		VDP_SetColor(COLOR_WHITE);
@@ -3537,7 +3541,7 @@ bool State_TitleUpdate()
 		VDP_FillVRAM_16K(0x0F, g_ScreenColorLow + (1 * 0x800),  8);
 		VDP_FillVRAM_16K(0x0F, g_ScreenColorLow + (2 * 0x800),  8);
 	}
-	else if(g_EventFrame == 29) // Title
+	else if (g_EventFrame == 29) // Title
 	{	
 		VDP_SetColor(COLOR_BLACK);
 		VDP_FillVRAM_16K(0x01, g_ScreenColorLow + (0 * 0x800),  8);
@@ -3545,7 +3549,7 @@ bool State_TitleUpdate()
 		VDP_FillVRAM_16K(0x01, g_ScreenColorLow + (2 * 0x800),  8);
 		GM2_LAYOUT(g_DataLogo_Names, 4, 2, 19, 10);
 	}
-	else if(g_EventFrame == 64) // Title
+	else if (g_EventFrame == 64) // Title
 	{
 		PT3_InitSong(g_DataMusic);
 		PT3_Resume();
@@ -3558,13 +3562,13 @@ bool State_TitleUpdate()
 		Print_SetPosition(11, 22);
 		Print_DrawText("PRESS A KEY");
 	}
-	if(g_EventFrame < 255)
+	if (g_EventFrame < 255)
 		g_EventFrame++;
 
 	bool bPressed = FALSE;
-	for(u8 i = 0; i < BIND_MAX; ++i)
+	for (u8 i = 0; i < BIND_MAX; ++i)
 	{
-		if(g_Binding[i].inButton1() || g_Binding[i].inButton2())
+		if (g_Binding[i].inButton1() || g_Binding[i].inButton2())
 		{
 			g_InputBinding[SIDE_BOTTOM] = i;
 			bPressed = TRUE;
@@ -3572,7 +3576,7 @@ bool State_TitleUpdate()
 		}		
 	}
 	
-	if(bPressed) // Skip
+	if (bPressed) // Skip
 	{
 		PT3_InitSong(g_DataMusic);
 		PT3_Resume();
@@ -3606,7 +3610,7 @@ bool State_MenuStart()
 ///
 bool State_MenuUpdate()
 {
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	UpdateInput();
@@ -3624,7 +3628,7 @@ bool State_ScoreStart()
 	GM2_LAYOUT(g_DataScoreL1_Names, 16, SCORE_BOARD_Y+10, 14, 12);
 
 	// Hide sprites
-	for(u8 s = 0; s < SPRITE_SCORE_BALL_1; ++s)
+	for (u8 s = 0; s < SPRITE_SCORE_BALL_1; ++s)
 		VDP_SetSpritePositionY(s, 213);
 
 	SetSprite(SPRITE_SCORE_BALL_4, 132, 213, PATTERN_SERVER_BASE,    COLOR_LIGHT_YELLOW);	// Base
@@ -3642,7 +3646,7 @@ bool State_ScoreStart()
 ///
 bool State_ScoreUpdate()
 {
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	UpdateInput();
@@ -3655,13 +3659,13 @@ bool State_ScoreUpdate()
 	VDP_SetSpritePositionY(SPRITE_SCORE_BALL_3, y);
 	VDP_SetSpritePositionY(SPRITE_SCORE_BALL_4, y);
 
-	if(KEY_PRESS(KEY_F1) || g_Player[SIDE_BOTTOM].binding->inButton1() || g_Player[SIDE_TOP].binding->inButton1())
+	if (KEY_PRESS(KEY_F1) || g_Player[SIDE_BOTTOM].binding->inButton1() || g_Player[SIDE_TOP].binding->inButton1())
 	{
 		VDP_HideSpriteFrom(SPRITE_SCORE_BALL_1);
 		Game_SetState(State_CourtRestore);
 		return FALSE;
 	}
-	if(KEY_PRESS(KEY_ESC)) // Return to main menu
+	if (KEY_PRESS(KEY_ESC)) // Return to main menu
 	{
 		Game_SetState(State_TitleStart);
 		return FALSE;
@@ -3692,7 +3696,7 @@ bool State_VictoryStart()
 	SetSprite(SPRITE_CUP_OUTLINE, 50-8, (u8)(164-33), PATTERN_CUP_OUTLINE1, COLOR_BLACK);
 	SetSprite(SPRITE_CUP_BODY,    50-8, (u8)(164-33), PATTERN_CUP_BODY,     COLOR_LIGHT_YELLOW);
 	
-	if(g_PlayMusic)
+	if (g_PlayMusic)
 	{
 		PT3_InitSong(g_DataMusic);
 		PT3_Resume();
@@ -3706,11 +3710,11 @@ bool State_VictoryStart()
 ///
 bool State_VictoryUpdate()
 {
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	u8 pat = PATTERN_CUP_OUTLINE1;
-	if(g_FlickerShadow && (g_GameFrame & 0x1))
+	if (g_FlickerShadow && (g_GameFrame & 0x1))
 		pat += 4;
 	VDP_SetSpritePattern(SPRITE_CUP_OUTLINE, pat);
 
@@ -3727,7 +3731,7 @@ bool State_VictoryUpdate()
 	DrawPlayerTop();
 	
 	UpdateInput();
-	if(g_Player[SIDE_BOTTOM].binding->inButton1() || g_Player[SIDE_TOP].binding->inButton1())
+	if (g_Player[SIDE_BOTTOM].binding->inButton1() || g_Player[SIDE_TOP].binding->inButton1())
 	{
 		Game_SetState(State_TitleStart);
 		return FALSE;
@@ -3769,7 +3773,7 @@ bool State_MatchStart()
 	g_OddPoint = FALSE;
 	g_Sets[0] = 0;
 	g_Sets[1] = 0;
-	for(u8 i = 0; i < g_NumSet; ++i)
+	for (u8 i = 0; i < g_NumSet; ++i)
 	{
 		g_Games[i][0] = 0;
 		g_Games[i][1] = 0;
@@ -3803,7 +3807,7 @@ bool State_MatchUpdate()
 
 // VDP_SetColor(COLOR_LIGHT_GREEN);
 
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	//---------------------------------------------------------------------
@@ -3817,29 +3821,29 @@ bool State_MatchUpdate()
 	UpdateInput();
 
 	#if (DEBUG)
-		if(KEY_PRESS(KEY_HOME))
+		if (KEY_PRESS(KEY_HOME))
 			g_Debug = 1 - g_Debug;
-		// if(KEY_PRESS(KEY_F2))
+		// if (KEY_PRESS(KEY_F2))
 			// Ball_ShootRandom();
 	#endif
 	
-	if(KEY_PRESS(KEY_ESC)) // Return to main menu
+	if (KEY_PRESS(KEY_ESC)) // Return to main menu
 	{
 		// VDP_HideSpriteFrom(0);
 		Game_SetState(State_TitleStart);
 		return FALSE;
 	}
-	if(KEY_PRESS(KEY_F1))
+	if (KEY_PRESS(KEY_F1))
 	{
 		Game_SetState(State_ScoreStart);
 		return FALSE;
 	}
-	if(KEY_PRESS(KEY_F3)) // Activate/deactivate shadows
+	if (KEY_PRESS(KEY_F3)) // Activate/deactivate shadows
 		g_FlickerShadow = 1 - g_FlickerShadow;
 	
-	if(bAllowInput)
+	if (bAllowInput)
 	{
-		if(g_ServeState)
+		if (g_ServeState)
 		{
 			Player_HandleService(&g_Player[g_Server]);
 			Player_HandleInput(&g_Player[1-g_Server]);
@@ -3881,7 +3885,7 @@ bool State_MatchUpdate()
 ///
 bool State_WinMatch()
 {
-	if(g_EventFrame == 0)
+	if (g_EventFrame == 0)
 	{
 		InitService();
 		Game_SetState(State_MatchUpdate);
@@ -3897,7 +3901,7 @@ bool State_TrainingStart()
 	VDP_EnableDisplay(FALSE);
 
 	InitializeCourt();
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 	{
 		g_ServeZone = 0;
 		g_Server = SIDE_BOTTOM;
@@ -3914,12 +3918,12 @@ bool State_TrainingStart()
 	// Initialize score board
 	g_TrainScore = 0;
 	g_ScoreFct = TrainingScore;
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 	{
 		GM2_LAYOUT(g_DataScoreL2_Names, 0, 0, 9, 3);
 		GM2_LAYOUT(g_DataScoreL3_Names, 32-9, 0, 9, 3);
 	}
-	else // if(g_TrainSide == SIDE_TOP)
+	else // if (g_TrainSide == SIDE_TOP)
 	{
 		GM2_LAYOUT(g_DataScoreL4_Names, 0, 22, 9, 2);
 		GM2_LAYOUT(g_DataScoreL5_Names, 32-9, 22, 9, 2);
@@ -3944,14 +3948,14 @@ bool State_TrainingUpdate()
 	// Switch buffer
 
 	// Prepare sprite objects
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 		Player_SwitchSprites(&g_Player[SIDE_BOTTOM]);
 	else
 		Player_SwitchSprites(&g_Player[SIDE_TOP]);
 	Launcher_SwitchSprites();
 	Ball_SwitchSprites();
 
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return TRUE;
 
 	//---------------------------------------------------------------------
@@ -3959,11 +3963,11 @@ bool State_TrainingUpdate()
 
 	UpdateInput();
 
-	// if(KEY_PRESS(KEY_F2))
+	// if (KEY_PRESS(KEY_F2))
 		// Ball_ShootRandom();
-	if(KEY_PRESS(KEY_F3)) // Activate/deactivate shadows
+	if (KEY_PRESS(KEY_F3)) // Activate/deactivate shadows
 		g_FlickerShadow = 1 - g_FlickerShadow;
-	if(KEY_PRESS(KEY_ESC)) // Return to main menu
+	if (KEY_PRESS(KEY_ESC)) // Return to main menu
 	{
 		VDP_HideSpriteFrom(0);
 		Game_SetState(State_TitleStart);
@@ -3971,10 +3975,10 @@ bool State_TrainingUpdate()
 
 	#if (DEBUG)
 
-		if(KEY_PRESS(KEY_HOME))
+		if (KEY_PRESS(KEY_HOME))
 		{
 			g_Debug = 1 - g_Debug;
-			if(g_Debug)
+			if (g_Debug)
 			{
 				u8 y = 4;
 				Print_SelectTextFont(g_DataFont, OFFSET_GAME_FONT);
@@ -3998,9 +4002,9 @@ bool State_TrainingUpdate()
 				Print_DrawText("STA:");
 
 				Print_SetPosition(1, 19);
-				if(g_Freq == FREQ_50HZ)
+				if (g_Freq == FREQ_50HZ)
 					Print_DrawText("FRQ:50HZ");
-				else if(g_Freq == FREQ_60HZ)
+				else if (g_Freq == FREQ_60HZ)
 					Print_DrawText("FRQ:60HZ");
 				else
 					Print_DrawText("FRQ:???");
@@ -4023,7 +4027,7 @@ bool State_TrainingUpdate()
 			}
 		}
 
-		if(g_Debug)
+		if (g_Debug)
 		{
 			u8 y = 4;
 			Print_SetPosition(5, y++);
@@ -4052,7 +4056,7 @@ bool State_TrainingUpdate()
 	//---------------------------------------------------------------------
 	// Update sprites position
 	
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 		UpdatePlayerBottom();
 	else
 		UpdatePlayerTop();
@@ -4066,14 +4070,14 @@ bool State_TrainingUpdate()
 	//---------------------------------------------------------------------
 	// Draw anim
 	
-	if(g_TrainSide == SIDE_BOTTOM)
+	if (g_TrainSide == SIDE_BOTTOM)
 		DrawPlayerBottom();
 	else
 		DrawPlayerTop();
 	
-	if(g_EventID != EVENT_NONE)
+	if (g_EventID != EVENT_NONE)
 	{
-		if(g_EventTimer == 0)
+		if (g_EventTimer == 0)
 		{
 			Ball_ShootRandom();
 			g_EventID = EVENT_NONE;
@@ -4103,14 +4107,14 @@ bool State_TrainingUpdate()
 /// Main loop
 void VSyncCallback()
 {
-	if((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
+	if ((g_Freq == FREQ_60HZ) && ((g_GameFrame % 6) == 0)) // skip 6th frame for 60 Hz
 		return;
 
-	if(g_PlayMusic)
+	if (g_PlayMusic)
 		PT3_Decode();
-	if(g_PlaySFX)
+	if (g_PlaySFX)
 		ayFX_Update();
-	if(g_PlayMusic || g_PlaySFX)
+	if (g_PlayMusic || g_PlaySFX)
 		PT3_UpdatePSG();
 }
 
@@ -4120,16 +4124,16 @@ void main()
 {
 	#if (MSX2_ENHANCE)
 	g_KeyRow[0] = Keyboard_Read(0); // 0 1 2 3 4 5 6 7
-	if(KEY_ON(KEY_1))
+	if (KEY_ON(KEY_1))
 		g_VersionVDP = VDP_VERSION_TMS9918A;
-	else if(KEY_ON(KEY_2))
+	else if (KEY_ON(KEY_2))
 		g_VersionVDP = VDP_VERSION_V9938;
 	else
 		g_VersionVDP = VDP_GetVersion();
 	#endif
 	
 	#if (TARGET_TYPE == TYPE_ROM)
-	if(g_VersionROM & 0x80)
+	if (g_VersionROM & 0x80)
 		g_FreqDetected = FREQ_50HZ;
 	else
 		g_FreqDetected = FREQ_60HZ;
@@ -4138,18 +4142,18 @@ void main()
 
 	// Initialize VDP
 	#if (MSX2_ENHANCE)
-	if(g_VersionVDP == VDP_VERSION_TMS9918A)
-		Game_Initialize(VDP_MODE_GRAPHIC2);
+	if (g_VersionVDP == VDP_VERSION_TMS9918A)
+		Game_Initialize(VDP_MODE_GRAPHIC2, FALSE);
 	else // VDP_VERSION_V99xx
-		Game_Initialize(VDP_MODE_GRAPHIC3);
+		Game_Initialize(VDP_MODE_GRAPHIC3, FALSE);
 	#else
-	Game_Initialize(VDP_MODE_GRAPHIC2);
+	Game_Initialize(VDP_MODE_GRAPHIC2, FALSE);
 	#endif
 
 	Game_SetVSyncCallback(VSyncCallback);
 	Game_SetState(State_Init);
 
-	while(1)
+	while (1)
 	{
 		Game_Update();
 	}
